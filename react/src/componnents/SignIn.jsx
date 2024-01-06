@@ -4,6 +4,7 @@ function SignIn(props) {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  
  function checkPassword(password) {
     // Check if the password is at least 8 characters long
     if (password.length < 8) {
