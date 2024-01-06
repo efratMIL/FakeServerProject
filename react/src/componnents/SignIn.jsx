@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import './LogInAndSignIn.css';
-import { Link } from 'react-router-dom';
+import EndOfRegistration from './EndOfRegistration';
+import { Link,useNavigate  } from 'react-router-dom';
 function SignIn(props) {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  
+  const navigate = useNavigate(); // Hook for navigation
+
  function checkPassword(password) {
     // Check if the password is at least 8 characters long
     if (password.length < 8) {
@@ -51,10 +53,10 @@ function SignIn(props) {
       return;
     }
 
-    if (!checkPassword(password)) {
-      alert('The password you chose is not strong enough');
-      return;
-    }
+    // if (!checkPassword(password)) {
+    //   alert('The password you chose is not strong enough');
+    //   return;
+    // }
 
     if (!checkPasswordMatch(password, confirmPassword)) {
       alert('Passwords do not match. Please try again.');
@@ -80,6 +82,8 @@ function SignIn(props) {
       alert(`שמחים שהצטרפת אלינו, ${userName} 😊`);
       localStorage.setItem(userName, JSON.stringify(user));
       localStorage.setItem('thisUser', userName);
+      navigate('/endOfRegistration');
+
     }
   }
   return (

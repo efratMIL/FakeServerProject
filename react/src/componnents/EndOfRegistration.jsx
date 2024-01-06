@@ -51,9 +51,9 @@ function EndOfRegistration() {
         <input
          className="street inputs"
           type="text"
-          placeholder="text"
+          placeholder="street"
           required
-          value={text}
+          value={street}
           onChange={(e) => setStreet(e.target.value)}
         />
         <br/>
