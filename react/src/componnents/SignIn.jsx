@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './LogInAndSignIn.css';
+import { Link } from 'react-router-dom';
 function SignIn(props) {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
@@ -118,6 +119,7 @@ function SignIn(props) {
         <label className="takanon" htmlFor="scales">
           I agree to accept all site conditions
         </label>
+        
         <input className="btns" type="submit" onClick={signIn} value="Sign in" />
         <br />
       </form>
