@@ -11,9 +11,9 @@ export default function Header() {
     }
     return (
         <header>
-            <Link className="site-logo" to="/">#VanLife</Link>
-            <nav>
-                <NavLink 
+            <Link className="site-logo" to="/">#Solo-Social</Link>
+            <header>
+              <NavLink 
                     to="/login"
                     end
                     style={({isActive}) => isActive ? activeStyles : null}
@@ -26,7 +26,8 @@ export default function Header() {
                 >
                     signIn
                 </NavLink>
-            </nav>
+                </header>
+           
         </header>
     )
 }

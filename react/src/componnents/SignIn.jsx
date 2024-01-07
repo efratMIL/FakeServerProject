@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './LogInAndSignIn.css';
-import EndOfRegistration from './EndOfRegistration';
-import { Link,useNavigate  } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
 function SignIn(props) {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const navigate = useNavigate(); // Hook for navigation
-
- function checkPassword(password) {
+  const [users, setUsers] = useState([]);
+  let isUserExist;
+  useEffect(() => {
+    fetch("http://localhost:3000/users")
+      .then(res => res.json())
+      .then(data => setUsers(data))
+  }, []);
+  function checkPassword(password) {
     // Check if the password is at least 8 characters long
     if (password.length < 8) {
       return false;
@@ -17,38 +23,38 @@ function SignIn(props) {
     if (!/[A-Z]/.test(password)) {
       return false;
     }
- 
+
     // Check if the password contains at least one lowercase letter
     if (!/[a-z]/.test(password)) {
       return false;
     }
- 
+
     // Check if the password contains at least one number
     if (!/[0-9]/.test(password)) {
       return false;
     }
- 
+
     // Check if the password contains at least one special character
     if (!/[@#$%^&+=!]/.test(password)) {
       return false;
     }
- 
+
     // If all checks pass, the password is valid
     return true;
   }
- 
+
   function checkPasswordMatch(password1, confirmPassword) {
     if (password1 !== confirmPassword) {
       return false;
     }
     return true;
   }
- 
- 
+
+
   function signIn(event) {
     event.preventDefault(); // Prevent form submission
 
-    if ( password === '' || userName === '') {
+    if (password === '' || userName === '') {
       alert('Please enter both username and password');
       return;
     }
@@ -62,18 +68,17 @@ function SignIn(props) {
       alert('Passwords do not match. Please try again.');
       return;
     }
-    let userData = JSON.parse(localStorage.getItem(userName));
-    if (userData) {
-        const userDecision = confirm(
-            'You already exist in the system. Do you want to log in?'
-          );
-      if(userDecision)
-      {
-        props.onChangeDisplay('LogIn'); 
-    }
-      else{
-      return;
-      } 
+    const isUserExist = users.some(user => user.username === userName);
+    if (isUserExist) {
+      const userDecision = confirm(
+        'You already exist in the system. Do you want to log in?'
+      );
+      if (userDecision) {
+        navigate('/login');
+      }
+      else {
+        return;
+      }
     } else {
       const user = {
         userName: userName,
@@ -88,7 +93,7 @@ function SignIn(props) {
   }
   return (
     <>
-      <form className="sign_in" style={{display: props.display}}>
+      <form className="sign_in" style={{ display: props.display }}>
         <br />
         <input
           className="username inputs"
@@ -101,7 +106,7 @@ function SignIn(props) {
         <br />
         <br />
         <input
-         className="username inputs"
+          className="username inputs"
           type="password"
           placeholder="password"
           required
@@ -111,7 +116,7 @@ function SignIn(props) {
         <br />
         <br />
         <input
-         className="username inputs"
+          className="username inputs"
           type="password"
           placeholder="password validation"
           required
@@ -123,7 +128,7 @@ function SignIn(props) {
         <label className="takanon" htmlFor="scales">
           I agree to accept all site conditions
         </label>
-        
+
         <input className="btns" type="submit" onClick={signIn} value="Sign in" />
         <br />
       </form>
