@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 
 function EndOfRegistration() {
   const [id, setId] = useState('');

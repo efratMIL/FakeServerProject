@@ -1,15 +1,47 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.site-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+header {
+    height: 110px;
+    display: flex;
+    align-items: center;
+    padding-block: 10px;
 }
 
+header .site-logo {
+    color: black;
+    margin-right: auto;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 25px;
+}
+
+header a {
+    text-decoration: none;
+    color: #4D4D4D;
+    font-weight: 600;
+    padding: 5px 20px;
+}
+
+header a:hover {
+    color: #161616;
+    text-decoration: underline;
+}
+
+main {
+    margin-bottom: 84px;
+}
+
+footer {
+    background-color: #161616;
+    color: #AAAAAA;
+    height: 74px;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    font-weight: 500;
+}
