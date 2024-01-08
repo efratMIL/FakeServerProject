@@ -3,7 +3,6 @@ import React from "react"
 import Header from "./componnents/Header";
 import Footer from "./componnents/Footer";
 import './index.css'
-import LogInAndSignIn from "./componnents/LogInAndSignIn";
 
 export default function Layout() {
   return (

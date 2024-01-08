@@ -5,8 +5,8 @@
 .sign_in {
     max-width: 500px;
     margin: auto;
-    overflow: auto;
     padding: 4vh 60px 5vh;
+    text-align: center;
 }
 
 .inputs {
@@ -18,9 +18,10 @@
     border-radius: 5px;
     border-color: gray;
     border: 1px solid;
-    width: 95%;
+    width: 100%;
     padding: 15px 15px;
 }
+
 
 input[type='checkbox'] {
     color: #6e6d7d;
@@ -60,7 +61,6 @@ input[type='checkbox'] {
 .log_in {
     max-width: 500px;
     margin: auto;
-    overflow: auto;
     padding: 4vh 60px 5vh;
 }
 
@@ -142,8 +142,8 @@ text-decoration: none;
 }
 
 .endOfRegister input {
-    width: 150%;
     margin-bottom: 5%;
+    width: 150%;
 }
 
 .divCompany,
@@ -152,8 +152,12 @@ text-decoration: none;
     margin-left: 3%;
     margin-right: 3%;
     padding: 5%;
+    width: 250%;
+
 }
 .btnEndSIgn{
-    margin-bottom: 2%;
-    justify-content: center;
+    width:   250%;
+    margin-top: 50%;
 }
+
+

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { NavLink,Link } from 'react-router-dom';
-import './LogInAndSignIn.css';
+import './componnents.css';
 
-function LogInAndSignIn() {
+function Welcome() {
 
   return (
     <>
@@ -12,4 +12,4 @@ function LogInAndSignIn() {
     </>
   );
 }
-export default LogInAndSignIn;
+export default Welcome;
