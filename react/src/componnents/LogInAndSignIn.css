@@ -1,33 +1,27 @@
-*{
+* {
     box-sizing: border-box;
 }
-.logInAndSignIn {
 
-    background-image: url(../pictures/WELCOME.png);
-    direction: rtl;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
 .sign_in {
     max-width: 500px;
     margin: auto;
     overflow: auto;
     padding: 4vh 60px 5vh;
 }
+
 .inputs {
     align-items: center;
     margin-right: 20%;
     margin-top: 1%;
     font-size: 100%;
-    width: 60%;
     direction: rtl;
     border-radius: 5px;
     border-color: gray;
-    border: 1px solid ;
+    border: 1px solid;
     width: 95%;
     padding: 15px 15px;
 }
+
 input[type='checkbox'] {
     color: #6e6d7d;
     margin-right: 4px;
@@ -38,7 +32,8 @@ input[type='checkbox'] {
     font-size: 120%;
     font-family: sans-serif;
 }
-.btns {
+
+.btns,.btnEndSIgn {
     background-color: #ff41ea;
     box-shadow: 0 0 24px 0 #ff41ea99;
     display: flex;
@@ -54,39 +49,21 @@ input[type='checkbox'] {
     border: 0;
     border-radius: 5px;
 }
-.link {
-    font-size: 100%;
-    margin-right: 20%;
-    margin-top: 5%;
-    font-size: 13px;
-    color: var(--grey);
-    text-align: left;
-    font-family: sans-serif;
-}
-.message {
-    margin-right: 25%;
-    margin-top: 10%;
-    font-size: 150%;
-}
+
+
 .sign {
     margin-right: 40%;
     font-size: 200%;
     margin-top: 0%;
 }
+
 .log_in {
     max-width: 500px;
     margin: auto;
     overflow: auto;
     padding: 4vh 60px 5vh;
 }
-.changeS {
-    text-decoration: underline;
-    color: #e29de2;
-}
-.changeL {
-    text-decoration: underline;
-    color: #e29de2;
-}
+
 .btnl {
     background-color: #ff41ea;
     box-shadow: 0 0 24px 0 #ff41ea99;
@@ -103,56 +80,16 @@ input[type='checkbox'] {
     border: 0;
     border-radius: 5px;
 }
-.log {
-    margin-right: 40%;
-    font-size: 200%;
-    margin-bottom: 10%;
-}
+
+
 @media screen and (max-width: 900px) {
     .logo {
         width: 40%;
     }
 }
-.type{
-    margin-top: 3%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-    font-size: 36px;
-    font-weight: 800;
-    cursor: pointer;
-    color: #abaab6;
-    font-size: 36px;
-    font-weight: 800;
-    cursor: pointer;
-}
-.selected{
-    color: #ff41ea;
-}
-.space{
-    display: flex;
-    align-items: center;
-    color: #d9d9d9;
-    font-weight: 100;
-    font-size: 20px;
-    margin: 0 20px;
-}
-.addP{
-    width: 7vw;
-    height: 8vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 30px;
-    box-shadow: 0 0 24px 0 #ffc000c7;
-    font-weight: 800;
-    margin-top: 2vh;
-    background-color: #ffc000c7;
-    color: #fff;
-    border: 0;
-    margin-left: 28%;
-}
-.begin{
+
+
+.begin {
     width: 8vw;
     height: 9vh;
     display: flex;
@@ -163,6 +100,60 @@ input[type='checkbox'] {
     font-weight: 800;
     background-color: #ffc000c7;
     color: #fff;
-    border: 0; 
+    border: 0;
     margin-left: 45%;
+}
+
+.activeStyles {
+    font-weight: bold;
+text-decoration: none;  
+  color: #ff41ea;
+    overflow: auto;
+    font-size: 200%;
+    text-align: left;
+    cursor: pointer;
+        display: flex;
+        align-items: center;
+        margin: 0 20px;
+}
+.unActiveStyle{
+    font-weight: bold;
+    color: black;
+    overflow: auto;
+    font-size: 200%;
+    text-align: left;
+    cursor: pointer;
+        display: flex;
+        align-items: center;
+        margin: 0 20px;
+}
+
+.endOfRegister {
+    display: flex;
+    margin: auto;
+    overflow: auto;
+    padding: 4vh 60px 5vh;
+    justify-content: center;
+}
+
+.endOfRegister form div {
+    display: flex;
+    flex-direction: column;
+}
+
+.endOfRegister input {
+    width: 150%;
+    margin-bottom: 5%;
+}
+
+.divCompany,
+.divAddress,
+.divPersonalDetails {
+    margin-left: 3%;
+    margin-right: 3%;
+    padding: 5%;
+}
+.btnEndSIgn{
+    margin-bottom: 2%;
+    justify-content: center;
 }

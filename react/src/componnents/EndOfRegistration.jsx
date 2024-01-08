@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import './LogInAndSignIn.css';
 function EndOfRegistration() {
   const [id, setId] = useState('');
   const [name, setName] = useState('');
@@ -17,6 +17,8 @@ function EndOfRegistration() {
     return(
      <>
      <form className="endOfRegister">
+      <div className='divPersonalDetails'>
+        <h3>Personal Details:</h3>
         <br />
         <input
           className="id inputs"
@@ -26,7 +28,7 @@ function EndOfRegistration() {
           value={id}
           onChange={(e) => setId(e.target.value)}
         />
-        <br />
+        
         <br />
         <input
          className="name inputs"
@@ -37,7 +39,6 @@ function EndOfRegistration() {
           onChange={(e) => setName(e.target.value)}
         />
         <br />
-        <br />
         <input
          className="email inputs"
           type="email"
@@ -46,8 +47,9 @@ function EndOfRegistration() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <br />
-        <h3>Adrress:</h3>
+        </div>
+        <div className='divAddress'>
+        <h3>Address:</h3>
         <br/>
         <input
          className="street inputs"
@@ -87,7 +89,7 @@ function EndOfRegistration() {
         <br/>
         <input
          className="lat inputs"
-          type="number"
+          type="tel"
           placeholder="lat"
           required
           value={lat}
@@ -102,6 +104,7 @@ function EndOfRegistration() {
           value={lng}
           onChange={(e) => setLng(e.target.value)}
         />
+        <br/>
         <input
          className="phone inputs"
           type="tel"
@@ -110,7 +113,9 @@ function EndOfRegistration() {
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
         />
-        <h3>Company</h3>
+        </div>
+        <div className='divCompany'>
+        <h3>Company:</h3>
         <br/>
         <input
          className="name inputs"
@@ -138,10 +143,10 @@ function EndOfRegistration() {
           value={bs}
           onChange={(e) => setBs(e.target.value)}
         />
-        
-        
-        <br />
+        </div>
+        <input className="btnEndSIgn" type="submit"  value="Sign in" />
       </form>
+       
      </>
 
     )

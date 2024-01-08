@@ -80,13 +80,12 @@ function SignIn(props) {
         return;
       }
     } else {
-      const user = {
+      const currentUser = {
         userName: userName,
         password: password
       };
       alert(`שמחים שהצטרפת אלינו, ${userName} 😊`);
-      localStorage.setItem(userName, JSON.stringify(user));
-      localStorage.setItem('thisUser', userName);
+      localStorage.setItem('thisUser', JSON.stringify(currentUser));
       navigate('/endOfRegistration');
 
     }
