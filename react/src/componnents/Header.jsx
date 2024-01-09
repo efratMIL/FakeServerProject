@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react"
 import { Link, NavLink, Outlet } from "react-router-dom"
 import "./componnents.css"
 import { showHeadersContext } from "../App";
-import logo from "../pictures/logo.png";
+import logo2 from "../pictures/logo2.png";
 
 export default function Header({ setShowHeaders }) {
     const showHeaders = useContext(showHeadersContext);
@@ -18,7 +18,7 @@ export default function Header({ setShowHeaders }) {
                         className={({ isActive }) => isActive ? 'activeStyles' : 'unActiveStyle'}
                         to="/"
                     >
-                        <img className={'logo'} src={logo} alt="Logo" />
+                        <img className={'logo'} src={logo2} alt="Logo" />
                     </NavLink>
                     <NavLink
                         to="/login"

@@ -143,11 +143,12 @@ text-decoration: none;
     margin-top: 50%;
 }
 .logo {
-    width: 100px; 
+    width: 50%; 
     height: auto; /* Maintain aspect ratio */
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: -30px;
 }
 
 @media screen and (max-width: 900px) {
