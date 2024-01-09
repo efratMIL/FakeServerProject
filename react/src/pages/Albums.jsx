@@ -1,4 +1,5 @@
 import './pages.css'
+import React, { useState, useContext } from 'react';
 function Albums()
 {
     return(

@@ -1,11 +1,11 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect,useContext} from 'react';
 import './pages.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { serverRequests } from '../Api';
-import {UserContext} from '../App'
+import {userContext} from '../App'
+import {localStorageUserContext} from '../App'
 
-
-function SignIn() {
+function SignIn({setLocalStorageUserData}) {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -90,9 +90,9 @@ function SignIn() {
         password: password
       };
       alert(`שמחים שהצטרפת אלינו, ${userName} 😊`);
+      setLocalStorageUserData(currentUser);
       localStorage.setItem('thisUser', JSON.stringify(currentUser));
       navigate('/endOfRegistration');
-
     }
   }
 

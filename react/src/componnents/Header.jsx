@@ -1,9 +1,9 @@
 import React, { useState } from "react"
-import { Link, NavLink,Outlet } from "react-router-dom"
+import { Link, NavLink, Outlet } from "react-router-dom"
 import "./componnents.css"
 export default function Header() {
     const [showHeader, setShowHeader] = useState(false);
-    <Outlet context={setShowHeader}/>
+    <Outlet context={setShowHeader} />
 
     return (
         <header>
@@ -36,8 +36,42 @@ export default function Header() {
                         >
                             Home
                         </NavLink>
-                    </>
-                )}
-        </header>
-    )
+                        <NavLink
+                            to=".."
+                            className={({ isActive }) => (isActive ? 'activeStyles' : 'unActiveStyle')}
+                            onClick={() => { { localStorage.setItem('thisUser', null) } }}
+                        >
+                            Log Out
+                        </NavLink>
+                        <NavLink
+                            to="/albums"
+                            className={({ isActive }) => (isActive ? 'activeStyles' : 'unActiveStyle')}
+                        >
+                            Albums
+                        </NavLink>
+                        <NavLink
+                            to="/posts"
+                            className={({ isActive }) => (isActive ? 'activeStyles' : 'unActiveStyle')}
+                        >
+                            Posts
+                        </NavLink>
+                        <NavLink
+                            to="/todos"
+                            className={({ isActive }) => (isActive ? 'activeStyles' : 'unActiveStyle')}
+                        >
+                            Todos
+                        </NavLink>
+                        <NavLink
+                            to="/info"
+                            className={({ isActive }) => (isActive ? 'activeStyles' : 'unActiveStyle')}
+                        >
+                            Info
+                        </NavLink>
+            
+                )
+                        
+                        
+                </header>
+            )
+          
 }

@@ -2,12 +2,11 @@ import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './pages.css';
 import { serverRequests } from '../Api';
-import {UserContext} from '../App'
+import {localStorageUserContext} from '../App'
 
 function EndOfRegistration({setUserData}) {
-  const UserData=useContext(UserContext);
-  const { userName, password } = JSON.parse(localStorage.getItem('thisUser'))
-  const [newUser, setNewUser] = useState(null);
+  const UserData=useContext(localStorageUserContext);
+  const { userName, password } = UserData
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -36,9 +35,8 @@ function EndOfRegistration({setUserData}) {
   function endSign(e) {
     e.preventDefault();
    const savedUser= serverRequests('POST','users',formData)
-   .then((savedUser)=>
-   
-   setUserData(savedUser));
+   .then((savedUser)=>{
+   setUserData(savedUser)});
    navigate('/home');
   }
 
