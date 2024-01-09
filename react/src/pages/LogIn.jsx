@@ -1,39 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState ,useContext} from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './pages.css';
-
-function LogIn(props) {
+import { usersContext } from '../App';
+function LogIn({setUserData,setShowHeaders}) {
   const [userName, setuserName] = useState('');
   const [password, setPassword] = useState('');
+  const users=useContext(usersContext);
+  const navigate = useNavigate(); 
+  let foundUser;
+
   function logIn(event) {
-    event.preventDefault(); // Prevent form submission
-    // Perform validation checks
+    event.preventDefault(); 
+
     if (userName === '' || password === '') {
       alert('Please enter both userName and password');
       return;
     }
 
-    let userNow = JSON.parse(localStorage.getItem(userName));
-    if (!userNow) {
+     foundUser = users.find(user => user.username === userName);
+    if (!foundUser) {
         const userDecision = confirm(
           'Your details are not saved in the system. Do you want to register with us?'
         );
         if (userDecision) {
-            props.onChangeDisplay('SignIn'); 
+            navigate('/register'); 
         } else {
             return;
         }
     } else {
-      if (userNow.password === password) {
-        alert(`${userNow.userName} שמחים שחזרת `);
+      if (foundUser.website === password) {
+        alert(`${foundUser.username} שמחים שחזרת `);
+        setShowHeaders(true);
+        setUserData(foundUser),
+        navigate('/home'); 
       } else {
         alert('Your password is incorrect');
+        setPassword("");
       }
     }
   }
 
   return (
     <>
-      <form className="log_in" style={{display: props.display}}>
+    <br/>
+    <br/>
+      <form className="log_in">
         <br />
         <input
           className="userName1 inputs"

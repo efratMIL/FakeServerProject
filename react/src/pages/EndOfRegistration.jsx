@@ -2,10 +2,10 @@ import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './pages.css';
 import { serverRequests } from '../Api';
-import {localStorageUserContext} from '../App'
+import { localStorageUserContext } from '../App'
 
-function EndOfRegistration({setUserData}) {
-  const UserData=useContext(localStorageUserContext);
+function EndOfRegistration({ setUserData, setShowHeaders }) {
+  const UserData = useContext(localStorageUserContext);
   const { userName, password } = UserData
   const navigate = useNavigate();
 
@@ -14,30 +14,32 @@ function EndOfRegistration({setUserData}) {
     username: userName,
     email: "",
     address: {
-        street: "",
-        suite: "",
-        city: "",
-        zipcode: "",
-        geo: {
-            lat: "",
-            lng:""
-        }
+      street: "",
+      suite: "",
+      city: "",
+      zipcode: "",
+      geo: {
+        lat: "",
+        lng: ""
+      }
     },
     phone: "",
     website: password,
     company: {
-        name: "",
-        catchPhrase: "",
-        bs: ""
+      name: "",
+      catchPhrase: "",
+      bs: ""
     },
   });
-  
+
   function endSign(e) {
     e.preventDefault();
-   const savedUser= serverRequests('POST','users',formData)
-   .then((savedUser)=>{
-   setUserData(savedUser)});
-   navigate('/home');
+    const savedUser = serverRequests('POST', 'users', formData)
+      .then((savedUser) => {
+        setUserData(savedUser),
+          setShowHeaders(true)
+      });
+    navigate('/home');
   }
 
   function handleChange(event) {
@@ -74,7 +76,7 @@ function EndOfRegistration({setUserData}) {
       return prevFormData;
     });
   }
-  
+
   return (
     <>
       <div className="loader"></div>
@@ -88,7 +90,7 @@ function EndOfRegistration({setUserData}) {
             placeholder="name"
             required
             name='name'
-            value={formData.name||''}
+            value={formData.name || ''}
             onChange={handleChange}
           />
           <br />
@@ -98,7 +100,7 @@ function EndOfRegistration({setUserData}) {
             placeholder="email"
             required
             name='email'
-            value={formData.email||''}
+            value={formData.email || ''}
             onChange={handleChange}
           />
           <br />
@@ -108,7 +110,7 @@ function EndOfRegistration({setUserData}) {
             placeholder="phone"
             required
             name='phone'
-            value={formData.phone||''}
+            value={formData.phone || ''}
             onChange={handleChange}
           />
         </div>
@@ -121,7 +123,7 @@ function EndOfRegistration({setUserData}) {
             placeholder="street"
             required
             name='address.street'
-            value={formData.address.street||''}
+            value={formData.address.street || ''}
             onChange={handleChange}
           />
           <br />
@@ -131,7 +133,7 @@ function EndOfRegistration({setUserData}) {
             placeholder="suite"
             required
             name='address.suite'
-            value={formData.address.suite||''}
+            value={formData.address.suite || ''}
             onChange={handleChange}
           />
           <br />
@@ -141,7 +143,7 @@ function EndOfRegistration({setUserData}) {
             placeholder="city"
             required
             name='address.city'
-            value={formData.address.city||''}
+            value={formData.address.city || ''}
             onChange={handleChange}
           />
           <br />
@@ -151,7 +153,7 @@ function EndOfRegistration({setUserData}) {
             placeholder="zipcode"
             required
             name='address.zipcode'
-            value={formData.address.zipcode||''}
+            value={formData.address.zipcode || ''}
             onChange={handleChange}
           />
           <br />
@@ -161,7 +163,7 @@ function EndOfRegistration({setUserData}) {
             placeholder="lat"
             required
             name='address.geo.lat'
-            value={formData.address.geo.lat||''}
+            value={formData.address.geo.lat || ''}
             onChange={handleChange}
           />
           <br />
@@ -171,7 +173,7 @@ function EndOfRegistration({setUserData}) {
             placeholder="lng"
             required
             name='address.geo.lng'
-            value={formData.address.geo.lng||''}
+            value={formData.address.geo.lng || ''}
             onChange={handleChange}
           />
         </div>
@@ -184,7 +186,7 @@ function EndOfRegistration({setUserData}) {
             placeholder="companyName"
             required
             name='company.name'
-            value={formData.company.name||''}
+            value={formData.company.name || ''}
             onChange={handleChange}
           />
           <br />
@@ -194,7 +196,7 @@ function EndOfRegistration({setUserData}) {
             placeholder="catchPhrase"
             required
             name='company.catchPhrase'
-            value={formData.company.catchPhrase||''}
+            value={formData.company.catchPhrase || ''}
             onChange={handleChange}
           />
           <br />
@@ -204,7 +206,7 @@ function EndOfRegistration({setUserData}) {
             placeholder="bs"
             required
             name='company.bs'
-            value={formData.company.bs||''}
+            value={formData.company.bs || ''}
             onChange={handleChange}
           />
         </div>

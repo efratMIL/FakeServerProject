@@ -1,24 +1,17 @@
 import React, { useState, useEffect,useContext} from 'react';
 import './pages.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { serverRequests } from '../Api';
-import {userContext} from '../App'
-import {localStorageUserContext} from '../App'
+import { usersContext } from '../App';
 
-function SignIn({setLocalStorageUserData}) {
+function SignIn({setUserData, setLocalStorageUserData,setShowHeaders}) {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [users, setUsers] = useState([]);
   const navigate = useNavigate(); 
-  
+  const users=useContext(usersContext);
   let isUserExist;
   
-  useEffect(() => {
-   const allUsers=(serverRequests('GET','users',null))
-   .then((allUsers)=>{
-   setUsers(allUsers)})
-  }, []);
+  
 
   function checkPassword(password) {
     // Check if the password is at least 8 characters long
@@ -134,7 +127,7 @@ function SignIn({setLocalStorageUserData}) {
           I agree to accept all site conditions
         </label>
 
-        <input className="btns" type="submit" onClick={signIn} value="Sign in" />
+        <input className="btns" type="submit" onClick={signIn} value="Add others details" />
         <br />
       </form>
     </>

@@ -1,17 +1,22 @@
 body{
     overflow: visible;
+
   }
+
   
 .site-wrapper {
 min-height: 100vh;
 display: flex;
 flex-direction: column;
+background-color: #F8F3EA;
 }
 header {
 height: 110px;
 display: flex;
 align-items: center;
 padding-block: 10px;
+background: #E09591;
+
 }
 
 header .site-logo {
@@ -35,15 +40,3 @@ text-decoration: underline;
 }
 
 
-footer {
-background-color: #161616;
-color: #AAAAAA;
-height: 74px;
-display: flex;
-flex-shrink: 0;
-justify-content: center;
-align-items: center;
-margin-top: auto;
-font-weight: 500;
-padding: 1%;
-}

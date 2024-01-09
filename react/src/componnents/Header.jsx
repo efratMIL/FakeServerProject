@@ -1,35 +1,49 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { Link, NavLink, Outlet } from "react-router-dom"
 import "./componnents.css"
-export default function Header() {
-    const [showHeader, setShowHeader] = useState(false);
-    <Outlet context={setShowHeader} />
+import { showHeadersContext } from "../App";
+import logo from "../pictures/logo.png";
 
+export default function Header({ setShowHeaders }) {
+    const showHeaders = useContext(showHeadersContext);
+    function handleLogOut() {
+        localStorage.setItem('thisUser', null);
+        setShowHeaders(false);
+    }
     return (
         <header>
-            {!showHeader ? (
+            {!showHeaders ? (
                 <>
-                    <NavLink className={({ isActive }) => isActive ? 'activeStyles' : 'unActiveStyle'} to="/">#Solo-Social</NavLink>
+                    <NavLink
+                        className={({ isActive }) => isActive ? 'activeStyles' : 'unActiveStyle'}
+                        to="/"
+                    >
+                        <img className={'logo'} src={logo} alt="Logo" />
+                    </NavLink>
                     <NavLink
                         to="/login"
                         end
                         className={({ isActive }) => isActive ? 'activeStyles' : 'unActiveStyle'}
                     >
-                        logIn
+                        LogIn
                     </NavLink>
                     <NavLink
                         to="/register"
                         className={({ isActive }) => isActive ? 'activeStyles' : 'unActiveStyle'}
                     >
-                        signIn
+                        SignIn
                     </NavLink>
                 </>
             )
                 :
                 (
                     <>
-                        <NavLink className={({ isActive }) => isActive ? 'activeStyles' : 'unActiveStyle'} to="/">#Solo-Social</NavLink>
-
+                        <NavLink
+                            className={({ isActive }) => isActive ? 'activeStyles' : 'unActiveStyle'}
+                            to="/"
+                        >
+                            <img className={'logo'} src={logo} alt="Logo" />
+                        </NavLink>
                         <NavLink
                             to="/home"
                             className={({ isActive }) => isActive ? 'activeStyles' : 'unActiveStyle'}
@@ -39,7 +53,7 @@ export default function Header() {
                         <NavLink
                             to=".."
                             className={({ isActive }) => (isActive ? 'activeStyles' : 'unActiveStyle')}
-                            onClick={() => { { localStorage.setItem('thisUser', null) } }}
+                            onClick={handleLogOut}
                         >
                             Log Out
                         </NavLink>
@@ -67,11 +81,9 @@ export default function Header() {
                         >
                             Info
                         </NavLink>
-            
-                )
-                        
-                        
-                </header>
-            )
-          
+                    </>
+                )}
+        </header>
+    )
+
 }

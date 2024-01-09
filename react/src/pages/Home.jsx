@@ -8,7 +8,7 @@ function Home() {
 
     return (
        <>
-            <h1>Welcome {UserData.username}</h1>
+            <h1 className='Welcoming'>Welcome {UserData.username}</h1>
         </>
     );
 }

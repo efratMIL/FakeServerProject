@@ -7,7 +7,11 @@ function Welcome() {
   return (
     <>
       <div>
-         <h1 className='activeStyles'>Welcome to your solo social!</h1>
+        <br/>
+        <br/>
+        <br/>
+         <h1 className='Welcoming'>Welcome to HappyHarmonyHub!</h1>
+         <h4 className='Welcoming2'>"A hub where happiness and harmony come together"</h4>
       </div>
     </>
   );
