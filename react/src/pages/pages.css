@@ -1,0 +1,207 @@
+* {
+    box-sizing: border-box;
+}
+
+.sign_in {
+    max-width: 500px;
+    margin: auto;
+    padding: 4vh 60px 5vh;
+    text-align: center;
+}
+
+.inputs {
+    align-items: center;
+    margin-right: 20%;
+    margin-top: 1%;
+    font-size: 100%;
+    direction: rtl;
+    border-radius: 5px;
+    border-color: gray;
+    border: 1px solid;
+    width: 100%;
+    padding: 15px 15px;
+}
+
+
+input[type='checkbox'] {
+    color: #6e6d7d;
+    margin-right: 4px;
+}
+
+.takanon {
+    margin-top: 7%;
+    font-size: 120%;
+    font-family: sans-serif;
+}
+
+.btns,.btnEndSIgn {
+    background-color: #ff41ea;
+    box-shadow: 0 0 24px 0 #ff41ea99;
+    display: flex;
+    justify-content: center;
+    max-height: 55px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 45px;
+    padding: 20px 15px;
+    border-radius: 5px;
+    width: 95%;
+    color: #fff;
+    border: 0;
+    border-radius: 5px;
+}
+
+
+.sign {
+    margin-right: 40%;
+    font-size: 200%;
+    margin-top: 0%;
+}
+
+.log_in {
+    max-width: 500px;
+    margin: auto;
+    padding: 4vh 60px 5vh;
+}
+
+.btnl {
+    background-color: #ff41ea;
+    box-shadow: 0 0 24px 0 #ff41ea99;
+    display: flex;
+    justify-content: center;
+    max-height: 55px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 45px;
+    padding: 20px 15px;
+    border-radius: 5px;
+    width: 95%;
+    color: #fff;
+    border: 0;
+    border-radius: 5px;
+}
+
+
+@media screen and (max-width: 900px) {
+    .logo {
+        width: 40%;
+    }
+}
+
+
+.begin {
+    width: 8vw;
+    height: 9vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    box-shadow: 0 0 24px 0 #ffc000c7;
+    font-weight: 800;
+    background-color: #ffc000c7;
+    color: #fff;
+    border: 0;
+    margin-left: 45%;
+}
+
+.activeStyles {
+    font-weight: bold;
+text-decoration: none;  
+  color: #ff41ea;
+    overflow: auto;
+    font-size: 200%;
+    text-align: left;
+    cursor: pointer;
+        display: flex;
+        align-items: center;
+        margin: 0 20px;
+}
+.unActiveStyle{
+    font-weight: bold;
+    color: black;
+    overflow: auto;
+    font-size: 200%;
+    text-align: left;
+    cursor: pointer;
+        display: flex;
+        align-items: center;
+        margin: 0 20px;
+}
+
+.endOfRegister {
+    display: flex;
+    margin: auto;
+    overflow: auto;
+    padding: 4vh 60px 5vh;
+    justify-content: center;
+}
+
+.endOfRegister form div {
+    display: flex;
+    flex-direction: column;
+}
+
+.endOfRegister input {
+    margin-bottom: 5%;
+    width: 150%;
+}
+
+.divCompany,
+.divAddress,
+.divPersonalDetails {
+    margin-left: 3%;
+    margin-right: 3%;
+    padding: 5%;
+    width: 250%;
+
+}
+.btnEndSIgn{
+    width:   250%;
+    margin-top: 50%;
+}
+
+.site-wrapper {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+}
+header {
+height: 110px;
+display: flex;
+align-items: center;
+padding-block: 10px;
+}
+
+header .site-logo {
+color: black;
+margin-right: auto;
+text-transform: uppercase;
+font-weight: 900;
+font-size: 25px;
+}
+
+header a {
+text-decoration: none;
+color: #4D4D4D;
+font-weight: 600;
+padding: 5px 20px;
+}
+
+header a:hover {
+color: #161616;
+text-decoration: underline;
+}
+
+
+footer {
+background-color: #161616;
+color: #AAAAAA;
+height: 74px;
+display: flex;
+flex-shrink: 0;
+justify-content: center;
+align-items: center;
+margin-top: auto;
+font-weight: 500;
+padding: 1%;
+}
