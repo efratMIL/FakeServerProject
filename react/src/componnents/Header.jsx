@@ -3,9 +3,11 @@ import { Link, NavLink, Outlet } from "react-router-dom"
 import "./componnents.css"
 import { showHeadersContext } from "../App";
 import logo2 from "../pictures/logo2.png";
-
+import { userContext } from "../App";
 export default function Header({ setShowHeaders }) {
     const showHeaders = useContext(showHeadersContext);
+    const userData = useContext(userContext);
+    console.log(userData)
     function handleLogOut() {
         localStorage.setItem('thisUser', null);
         setShowHeaders(false);
@@ -42,7 +44,7 @@ export default function Header({ setShowHeaders }) {
                             className={({ isActive }) => isActive ? 'activeStyles' : 'unActiveStyle'}
                             to="/"
                         >
-                            <img className={'logo'} src={logo} alt="Logo" />
+                            <img className={'logo'} src={logo2} alt="Logo" />
                         </NavLink>
                         <NavLink
                             to="/home"
@@ -58,25 +60,25 @@ export default function Header({ setShowHeaders }) {
                             Log Out
                         </NavLink>
                         <NavLink
-                            to="/albums"
+                            to={`users/${userData[0].id}/albums`}
                             className={({ isActive }) => (isActive ? 'activeStyles' : 'unActiveStyle')}
                         >
                             Albums
                         </NavLink>
                         <NavLink
-                            to="/posts"
+                            to={`users/${userData[0].id}/posts`}
                             className={({ isActive }) => (isActive ? 'activeStyles' : 'unActiveStyle')}
                         >
                             Posts
                         </NavLink>
                         <NavLink
-                            to="/todos"
+                            to={`users/${userData[0].id}/todos`}
                             className={({ isActive }) => (isActive ? 'activeStyles' : 'unActiveStyle')}
                         >
                             Todos
                         </NavLink>
                         <NavLink
-                            to="/info"
+                            to={`users/${userData[0].id}/info`}
                             className={({ isActive }) => (isActive ? 'activeStyles' : 'unActiveStyle')}
                         >
                             Info

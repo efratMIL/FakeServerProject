@@ -34,10 +34,11 @@ function EndOfRegistration({ setUserData, setShowHeaders }) {
 
   function endSign(e) {
     e.preventDefault();
-    const savedUser = serverRequests('POST', 'users', formData)
+    serverRequests('POST', 'users', formData)
       .then((savedUser) => {
-        setUserData(savedUser),
+        setUserData(savedUser)
           setShowHeaders(true)
+          console.log(savedUser)
       });
     navigate('/home');
   }

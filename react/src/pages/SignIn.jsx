@@ -1,18 +1,15 @@
 import React, { useState, useEffect,useContext} from 'react';
 import './pages.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { usersContext } from '../App';
+import { serverRequests } from '../Api';
 
-function SignIn({setUserData, setLocalStorageUserData,setShowHeaders}) {
+function SignIn({ setLocalStorageUserData,setShowHeaders}) {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const navigate = useNavigate(); 
-  const users=useContext(usersContext);
-  let isUserExist;
   
-  
-
+     
   function checkPassword(password) {
     // Check if the password is at least 8 characters long
     if (password.length < 8) {
@@ -66,8 +63,12 @@ function SignIn({setUserData, setLocalStorageUserData,setShowHeaders}) {
       alert('Passwords do not match. Please try again.');
       return;
     }
-     isUserExist = users.some(user => user.username === userName);
-    if (isUserExist) {
+     (serverRequests('GET', `users?username=${userName}`, null))
+    .then((isUserExist)=>
+    {
+
+    if (isUserExist.length!=0) {
+      console.log(isUserExist.length)
       const userDecision = confirm(
         'You already exist in the system. Do you want to log in?'
       );
@@ -78,6 +79,7 @@ function SignIn({setUserData, setLocalStorageUserData,setShowHeaders}) {
         return;
       }
     } else {
+      console.log(isUserExist.length)
       const currentUser = {
         userName: userName,
         password: password
@@ -87,6 +89,9 @@ function SignIn({setUserData, setLocalStorageUserData,setShowHeaders}) {
       localStorage.setItem('thisUser', JSON.stringify(currentUser));
       navigate('/endOfRegistration');
     }
+  })
+    
+    
   }
 
   return (

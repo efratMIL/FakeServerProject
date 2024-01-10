@@ -20,18 +20,11 @@ export const usersContext = createContext();
 
 function App() {
 
-    const [users, setUsers] = useState([]);
     const [userData, setUserData] = useState({});
     const [localStorageUserData, setLocalStorageUserData] = useState({});
     const [showHeaders, setShowHeaders] = useState(false);
-    useEffect(() => {
-        const allUsers = (serverRequests('GET', 'users', null))
-            .then((allUsers) => {
-                setUsers(allUsers)
-            })
-    }, []);
+    
     return (
-        <usersContext.Provider value={users}>
             <showHeadersContext.Provider value={showHeaders}>
                 <localStorageUserContext.Provider value={localStorageUserData}>
                     <userContext.Provider value={userData}>
@@ -43,17 +36,16 @@ function App() {
                                     <Route path="register" element={<SignIn setUserData={setUserData} setLocalStorageUserData={setLocalStorageUserData} />} />
                                     <Route path="endOfRegistration" element={<EndOfRegistration setUserData={setUserData} setShowHeaders={setShowHeaders}  />} />
                                     <Route path="home" element={<Home setUserData={setUserData} />} />
-                                    <Route path="albums" element={<Albums />} />
-                                    <Route path="posts" element={<Posts />} />
-                                    <Route path="todos" element={<Todos />} />
-                                    <Route path="info" element={<Info />} />
+                                    <Route path="users/:id/albums" element={<Albums />} />
+                                    <Route path="users/:id/posts" element={<Posts />} />
+                                    <Route path="users/:id/todos" element={<Todos />} />
+                                    <Route path="users/:id/info" element={<Info />} />
                                 </Route>
                             </Routes>
                         </BrowserRouter>
                     </userContext.Provider>
                 </localStorageUserContext.Provider>
             </showHeadersContext.Provider>
-        </usersContext.Provider>
     )
 }
 export default App
