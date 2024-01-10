@@ -77,12 +77,12 @@ export default function Header({ setShowHeaders }) {
                         >
                             Todos
                         </NavLink>
-                        <NavLink
+                        {/* <NavLink
                             to={`users/${userData.id}/info`}
                             className={({ isActive }) => (isActive ? 'activeStyles' : 'unActiveStyle')}
                         >
                             Info
-                        </NavLink>
+                        </NavLink> */}
                     </>
                 )}
         </header>

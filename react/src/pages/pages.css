@@ -330,7 +330,7 @@ div {
     padding: 20px;
     color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    
+    width: 500px;
     max-height: 80vh; 
     overflow-y: auto; 
 }
@@ -349,6 +349,6 @@ div {
     border-radius: 5px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
-    margin-left: 70%;
     border-color: #F8F3EA;
+    margin-left: 50px;
 }

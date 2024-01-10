@@ -33,10 +33,11 @@ function Info({setIsInfo,isInfo}) {
           <label>Email:{userData.email}</label>
           <br />
           <label>Phone:{userData.phone}</label>
+          <br />
+
         </div>
         <div >
           <h3>Address:</h3>
-          <br />
           <label>Street:{userData.address.street}</label>
           <br />
           <label>Suite:{userData.address.suite}</label>
