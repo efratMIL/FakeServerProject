@@ -35,8 +35,9 @@ function App() {
                                     <Route path='login' element={<LogIn setUserData={setUserData} setShowHeaders={setShowHeaders}/>} />
                                     <Route path="register" element={<SignIn setUserData={setUserData} setLocalStorageUserData={setLocalStorageUserData} />} />
                                     <Route path="endOfRegistration" element={<EndOfRegistration setUserData={setUserData} setShowHeaders={setShowHeaders}  />} />
-                                    <Route path="home" element={<Home setUserData={setUserData} />} />
+                                    <Route path="home" element={<Home setUserData={setUserData} />} >
                                     <Route path="users/:id/info" element={<Info />} />
+                                    </Route>
                                     <Route path="users/:id/albums" element={<Albums />} />
                                     <Route path="users/:id/posts" element={<Posts />} />
                                     <Route path="users/:id/todos" element={<Todos />} />

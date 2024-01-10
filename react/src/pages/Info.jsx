@@ -5,22 +5,21 @@ import Modal from 'react-modal';
 import { userContext } from '../App';
 Modal.setAppElement(document.body);
 
-function Info() {
+function Info({setIsInfo,isInfo}) {
   const userData = useContext(userContext);
-  const [modalIsOpen, setIsOpen] = useState(false);
+  
 
   function openModal() {
-    setIsOpen(true);
+    setIsInfo(true);
   }
   function closeModal() {
-    setIsOpen(false);
+    setIsInfo(false);
   }
 
   return (
     <div>
-      <button className='modalButton' onClick={openModal}>Open Modal</button>
       <Modal
-        isOpen={modalIsOpen}
+        isOpen={isInfo}
         onRequestClose={closeModal}
         className='customStyles'
       >
