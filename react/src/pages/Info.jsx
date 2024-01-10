@@ -1,65 +1,65 @@
 import './pages.css';
-import React from 'react';
+import React,{useState,useContext} from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
-
-// Set the app element to document.body
+import { userContext } from '../App';
 Modal.setAppElement(document.body);
 
 function Info() {
-  const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      backgroundColor: '#fff',
-      borderRadius: '10px',
-      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-      padding: '20px',
-    },
-    overlay: {
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    },
-  };
-
-  let subtitle;
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const userData = useContext(userContext);
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
     setIsOpen(true);
   }
-
-  function afterOpenModal() {
-    subtitle.style.color = '#f00';
-  }
-
   function closeModal() {
     setIsOpen(false);
   }
 
   return (
     <div>
-      <button onClick={openModal}>Open Modal</button>
+      <button className='modalButton' onClick={openModal}>Open Modal</button>
       <Modal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
+        className='customStyles'
       >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-        <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
-        <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form>
+        <form >
+        <div >
+          <h3>Personal Details:</h3>
+          <br />
+          <label>Name:{userData.name}</label>
+          <br />
+          <label>Email:{userData.email}</label>
+          <br />
+          <label>Phone:{userData.phone}</label>
+        </div>
+        <div >
+          <h3>Address:</h3>
+          <br />
+          <label>Street:{userData.address.street}</label>
+          <br />
+          <label>Suite:{userData.address.suite}</label>
+          <br />
+          <label>City:{userData.address.city}</label>
+          <br />
+          <label>Zip Code:{userData.address.zipcode}</label>
+          <br />
+          <h3>Geo:</h3>
+          <label>lat:{userData.address.geo.lat }</label>
+          <br />
+          <label>lng:{userData.address.geo.lng }</label>
+        </div>
+        <div >
+          <h3>Company:</h3>
+          <label>Company Name:{userData.company.name }</label>
+          <br />
+          <label>Catch Phrase:{userData.company.catchPhrase }</label>
+          <br />
+          <label>bs:{userData.company.bs }</label>
+        </div>
+      </form>
+        <button className='modalButton' onClick={closeModal}>close</button>
       </Modal>
     </div>
   );
