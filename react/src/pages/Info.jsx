@@ -26,6 +26,7 @@ function Info() {
       >
         <form >
         <div >
+        <span className="close" onClick={closeModal}>&times;</span>
           <h3>Personal Details:</h3>
           <br />
           <label>Name:{userData.name}</label>
@@ -59,10 +60,11 @@ function Info() {
           <label>bs:{userData.company.bs }</label>
         </div>
       </form>
-        <button className='modalButton' onClick={closeModal}>close</button>
+  
       </Modal>
     </div>
   );
 }
 
 export default Info;
+

@@ -1,10 +1,10 @@
 * {
-    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 .sign_in {
     max-width: 500px;
-    margin: auto;
     padding: 4vh 60px 5vh;
     text-align: center;
 }
@@ -48,6 +48,7 @@ input[type='checkbox'] {
     color: #fff;
     border: 0;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 
@@ -77,6 +78,7 @@ input[type='checkbox'] {
     color: #fff;
     border: 0;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 
@@ -104,7 +106,7 @@ input[type='checkbox'] {
 .activeStyles {
     font-weight: bold;
     text-decoration: none;
-    color: white;
+    color: #F8F3EA;
     overflow: auto;
     font-size: 150%;
     text-align: left;
@@ -112,7 +114,7 @@ input[type='checkbox'] {
     display: flex;
     align-items: center;
     margin: 0 20px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
 }
 
@@ -122,11 +124,12 @@ input[type='checkbox'] {
     overflow: auto;
     font-size: 150%;
     text-align: left;
+    text-decoration: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     margin: 0 20px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .endOfRegister {
@@ -154,12 +157,13 @@ input[type='checkbox'] {
     margin-right: 3%;
     padding: 5%;
     width: 250%;
-
 }
-
+.divCompany{
+    margin-right: 10%;
+}
 .btnEndSIgn {
     width: 250%;
-    margin-top: 50%;
+    margin-top: 70%;
 }
 
 .site-wrapper {
@@ -174,6 +178,7 @@ header {
     align-items: center;
     padding-block: 10px;
 }
+
 
 header .site-logo {
     color: black;
@@ -211,21 +216,108 @@ footer {
     background: #F0D0C1;
 }
 
-.Welcoming,.Welcoming2 {
+.Welcoming, .Welcoming2 {
     font-size: 46px;
     text-align: center;
     margin-top: 50px;
-   color:  #EEB182;
+    color: #EEB182;
 }
-.Welcoming2{
+
+.Welcoming2 {
     font-size: 36px;
 
 }
+
 @media screen and (max-width: 768px) {
     .Welcoming {
         font-size: 24px;
         /* Adjust font size for smaller screens if necessary */
     }
+}
+
+.customStyles {
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    background-color: #EEB182;
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.customStyles-overlay {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modalButton {
+    background-color: #EEB182;
+    justify-content: center;
+    font-size: 18px;
+    margin-top: 45px;
+    padding: 15px 15px;
+    color: #fff;
+    border-radius: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    margin-left: 70%;
+    border-color: #F8F3EA;
+}
+
+.animate {
+    animation: animatezoom 0.6s;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto;
+    border: 1px solid #888;
+    width: 40%;
+    padding: 1%;
+}
+
+form {
+    display: block;
+    margin-top: 0em;
+}
+
+.container {
+    padding: 16px;
+    margin-top: 15%;
+    margin-bottom: 15%;
+}
+
+div {
+    display: block;
+}
+
+/* The Modal (background) */
+.modal {
+    position: fixed;
+    /* Stay in place */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+.close{
+    font-size: 30px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    cursor: pointer;
 }
 .customStyles {
     

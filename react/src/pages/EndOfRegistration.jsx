@@ -37,8 +37,8 @@ function EndOfRegistration({ setUserData, setShowHeaders }) {
     serverRequests('POST', 'users', formData)
       .then((savedUser) => {
         setUserData(savedUser)
-          setShowHeaders(true)
-          console.log(savedUser)
+        setShowHeaders(true)
+        console.log(savedUser)
       });
     navigate('/home');
   }
@@ -210,8 +210,8 @@ function EndOfRegistration({ setUserData, setShowHeaders }) {
             value={formData.company.bs || ''}
             onChange={handleChange}
           />
+          <input className="btnEndSIgn" type="submit" onClick={e => endSign(e)} value="Sign in" />
         </div>
-        <input className="btnEndSIgn" type="submit" onClick={e => endSign(e)} value="Sign in" />
       </form>
 
     </>

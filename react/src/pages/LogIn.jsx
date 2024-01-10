@@ -11,7 +11,6 @@ function LogIn({ setUserData, setShowHeaders }) {
 
   function logIn(event) {
     event.preventDefault();
-
     if (userName === '' || password === '') {
       alert('Please enter both userName and password');
       return;
@@ -30,7 +29,7 @@ function LogIn({ setUserData, setShowHeaders }) {
           }
         } else {
           if (foundUser[0].website === password) {
-            alert(`${foundUser[0].username} שמחים שחזרת `);
+            alert(`${foundUser[0].username} we're glad you're back`);
             setShowHeaders(true)
             setUserData(foundUser[0])
             console.log(foundUser);

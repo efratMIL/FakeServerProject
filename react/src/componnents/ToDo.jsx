@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 function Todo({setTodos}) {
  
-
   const handleToggleComplete = (id) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
@@ -10,7 +9,6 @@ function Todo({setTodos}) {
       )
     );
   };
-
   
   const handleDeleteTodo = (id) => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
@@ -29,7 +27,6 @@ function Todo({setTodos}) {
 
   return (
     <>
-   
       <div key={todo.id}>
             <span>{todo.id}</span>
             <input

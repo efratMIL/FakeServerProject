@@ -143,7 +143,7 @@ text-decoration: none;
     margin-top: 50%;
 }
 .logo {
-    width: 50%; 
+    width: 55%; 
     height: auto; /* Maintain aspect ratio */
     display: flex;
     align-items: center;

@@ -63,7 +63,7 @@ function SignIn({ setLocalStorageUserData,setShowHeaders}) {
       alert('Passwords do not match. Please try again.');
       return;
     }
-     (serverRequests('GET', `users?username=${userName}`, null))
+    serverRequests('GET', `users?username=${userName}`, null)
     .then((isUserExist)=>
     {
 
@@ -84,7 +84,7 @@ function SignIn({ setLocalStorageUserData,setShowHeaders}) {
         userName: userName,
         password: password
       };
-      alert(`שמחים שהצטרפת אלינו, ${userName} 😊`);
+      alert(`${userName} we are glad you joined us😊`);
       setLocalStorageUserData(currentUser);
       localStorage.setItem('thisUser', JSON.stringify(currentUser));
       navigate('/endOfRegistration');
