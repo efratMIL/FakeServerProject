@@ -31,9 +31,15 @@ function LogIn({ setUserData, setShowHeaders }) {
         } else {
           if (foundUser[0].website === password) {
             alert(`${foundUser[0].username} שמחים שחזרת `);
-            setShowHeaders(true);
-            setUserData(foundUser),
-              navigate('/home');
+            setShowHeaders(true)
+            setUserData(foundUser[0])
+            console.log(foundUser);
+            const currentUser = {
+              userName: userName,
+              password: password
+            };
+            localStorage.setItem('thisUser', JSON.stringify(currentUser))
+              navigate('/home')
           } else {
             alert('Your password is incorrect');
             setPassword("");

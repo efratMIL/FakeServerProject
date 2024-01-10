@@ -42,7 +42,7 @@ export default function Header({ setShowHeaders }) {
                     <>
                         <NavLink
                             className={({ isActive }) => isActive ? 'activeStyles' : 'unActiveStyle'}
-                            to="/"
+                            to="/home"
                         >
                             <img className={'logo'} src={logo2} alt="Logo" />
                         </NavLink>
@@ -60,25 +60,25 @@ export default function Header({ setShowHeaders }) {
                             Log Out
                         </NavLink>
                         <NavLink
-                            to={`users/${userData[0].id}/albums`}
+                            to={`users/${userData.id}/albums`}
                             className={({ isActive }) => (isActive ? 'activeStyles' : 'unActiveStyle')}
                         >
                             Albums
                         </NavLink>
                         <NavLink
-                            to={`users/${userData[0].id}/posts`}
+                            to={`users/${userData.id}/posts`}
                             className={({ isActive }) => (isActive ? 'activeStyles' : 'unActiveStyle')}
                         >
                             Posts
                         </NavLink>
                         <NavLink
-                            to={`users/${userData[0].id}/todos`}
+                            to={`users/${userData.id}/todos`}
                             className={({ isActive }) => (isActive ? 'activeStyles' : 'unActiveStyle')}
                         >
                             Todos
                         </NavLink>
                         <NavLink
-                            to={`users/${userData[0].id}/info`}
+                            to={`users/${userData.id}/info`}
                             className={({ isActive }) => (isActive ? 'activeStyles' : 'unActiveStyle')}
                         >
                             Info
