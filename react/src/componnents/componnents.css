@@ -183,3 +183,7 @@ text-decoration: none;
 .updateAndDelete{
     margin-bottom: 0;
 }
+
+.updateImage{
+    margin-bottom: 4px;
+}
