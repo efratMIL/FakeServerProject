@@ -157,4 +157,29 @@ text-decoration: none;
     }
 }
 
+.deleteImage{
+    width: 30px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+.todoDiv {
+    justify-content: center;
+    align-items: center;
+    margin-left: 0;
+    border: 2px solid #E09591; /* Specify width and style */
+    border-radius: 2px;
+    margin-bottom: 2px;
+    padding: 3px;
+    padding-bottom: 0;
+    padding-top: 0;
+}
 
+.todoIndex{
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.updateAndDelete{
+    margin-bottom: 0;
+}

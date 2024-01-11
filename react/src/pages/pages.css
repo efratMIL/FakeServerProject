@@ -352,3 +352,47 @@ div {
     border-color: #F8F3EA;
     margin-left: 50px;
 }
+.todosDiv {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Create four equal-width columns */
+    gap: 10px; /* Add some gap between the columns */
+    margin: 10px;
+
+}
+.todoButtonsDiV{
+    display: flex;
+    margin-right: 0;
+
+}
+.todoAddButton{
+    background-color: #E09591;
+    display: flex;
+    justify-content: center;
+    max-height: 55px;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 20px 15px;
+    border-radius: 5px;
+    color: #fff;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 650px;
+}
+.clearTodo{
+    width: 30px;
+    height: 30px;
+}
+.todoButtonsDiV label{
+        font-weight: bold;
+        text-decoration: none;
+        text-align: left;
+        align-items: center;
+        margin: 0 20px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 20px;
+}
+.todoButtonsDiV select{
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+padding: 4px;
+}

@@ -1,12 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './pages.css';
-import { usersContext } from '../App';
 import { serverRequests } from '../Api';
+
 function LogIn({ setUserData, setShowHeaders }) {
   const [userName, setuserName] = useState('');
   const [password, setPassword] = useState('');
-  const users = useContext(usersContext);
   const navigate = useNavigate();
 
   function logIn(event) {
