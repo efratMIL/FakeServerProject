@@ -4,6 +4,7 @@ import { serverRequests } from "../Api";
 import Post from '../componnents/Post';
 import { userContext } from "../App";
 import reset from "../pictures/clear.png";
+
 function Posts() {
     const userData = useContext(userContext);
     const [posts, setPosts] = useState([]);

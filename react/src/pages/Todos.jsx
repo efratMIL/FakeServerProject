@@ -8,8 +8,8 @@ function Todos() {
   const userData = useContext(userContext);
   const [todos, setTodos] = useState([]);
   const [searcTodos, setSearcTodos] = useState([]);
-  const [selectedFilter, setSelectedFilter] = useState("serial");
-  const [selectedSearch, setSelectedSearch] = useState("toDoNumber");
+  const [selectedFilter, setSelectedFilter] = useState(null);
+  const [selectedSearch, setSelectedSearch] = useState(null);
   
   useEffect(() => {
     const fetchDataOfTodos = async () => {
@@ -134,6 +134,7 @@ function Todos() {
       <label>
         Sort by:
         <select value={selectedFilter} onChange={handleFilterChange}>
+        <option value="">👇</option>
           <option value="serial" >Serial</option>
           <option value="randomaly">Randomaly</option>
           <option value="completed">Completed</option>
@@ -143,7 +144,8 @@ function Todos() {
       
       <label >
         Search by:                     
-        <select value={selectedSearch} onChange={handleSearchChange}>
+        <select value={selectedSearch} onChange={handleSearchChange} >
+        <option value="">👇</option>
           <option value="toDoNumber" >To Do Id</option>
           <option value="title">Title</option>
           <option value="completed">Completed</option>
