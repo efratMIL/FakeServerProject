@@ -8,7 +8,6 @@ function Todos() {
   const userData = useContext(userContext);
   const [todos, setTodos] = useState([]);
   const [searcTodos, setSearcTodos] = useState([]);
-
   const [selectedFilter, setSelectedFilter] = useState("serial");
   const [selectedSearch, setSelectedSearch] = useState("toDoNumber");
   

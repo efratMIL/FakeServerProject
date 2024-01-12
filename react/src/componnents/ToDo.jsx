@@ -2,7 +2,6 @@
 import React from "react";
 import del from "../pictures/delete.png";
 import update from "../pictures/update.png";
-
 import './componnents.css'
 
 function Todo({ index, todo, UpdateDataOfTodos, handleDeleteTodo }) {
