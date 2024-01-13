@@ -15,7 +15,7 @@
     {
       "userId": 1,
       "id": 5,
-      "title": "hello every one",
+      "title": "hello everyone",
       "body": "repudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque"
     },
     {
@@ -40639,6 +40639,29 @@
         "bs": ""
       },
       "id": 48
+    },
+    {
+      "name": "efratM",
+      "username": "ThePerfect",
+      "email": "efrat@gmail.com",
+      "address": {
+        "street": "katz",
+        "suite": "Apt. 556",
+        "city": "JER",
+        "zipcode": "232",
+        "geo": {
+          "lat": "4",
+          "lng": "2"
+        }
+      },
+      "phone": "32444",
+      "website": "12",
+      "company": {
+        "name": "Apple",
+        "catchPhrase": "fdv",
+        "bs": "fsa"
+      },
+      "id": 49
     }
   ],
   "todos": [

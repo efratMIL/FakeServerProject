@@ -8,8 +8,8 @@ function Todos() {
   const userData = useContext(userContext);
   const [todos, setTodos] = useState([]);
   const [searcTodos, setSearcTodos] = useState([]);
-  const [selectedFilter, setSelectedFilter] = useState(null);
-  const [selectedSearch, setSelectedSearch] = useState(null);
+  const [selectedFilter, setSelectedFilter] = useState("");
+  const [selectedSearch, setSelectedSearch] = useState("");
   
   useEffect(() => {
     const fetchDataOfTodos = async () => {
@@ -152,7 +152,7 @@ function Todos() {
           <option value="unCompleted">Un Completed</option>
         </select>
       </label>
-      <img  className="clearTodo" src={reset} onClick={()=>setSearcTodos(todos)}></img>
+      <img  className="clear" src={reset} onClick={()=>setSearcTodos(todos)}></img>
       <button className="todoAddButton"
           onClick={() => {
             const newToDo = prompt("Enter new To Do:");
