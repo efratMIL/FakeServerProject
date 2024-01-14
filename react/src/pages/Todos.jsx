@@ -168,7 +168,7 @@ function Todos() {
       <div className="todosDiv">
       {searcTodos.map((todo,index) => (
         <Todo
-        key={todo.id}
+          key={todo.id}
           todo={todo}
           index={index+1}
           UpdateDataOfTodos={UpdateDataOfTodos}

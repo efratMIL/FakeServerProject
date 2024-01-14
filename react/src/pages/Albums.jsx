@@ -6,7 +6,7 @@ import reset from "../pictures/clear.png";
 
 function Albums() {
   const userData = useContext(userContext);
-  const [albums, setalbums] = useState([]);
+  const [albums, setAlbums] = useState([]);
   const [searcAlbums, setSearcAlbums] = useState([]);
   const [selectedSearch, setSelectedSearch] = useState("");
   const [selectedAlbum, setSelectedAlbum] = useState("");
@@ -17,7 +17,7 @@ function Albums() {
       try {
         const response = await serverRequests('GET', `users/${JSON.stringify(userData.id)}/albums`, null);
         const foundAlbums = response;
-        setalbums(foundAlbums);
+        setAlbums(foundAlbums);
         setSearcAlbums(foundAlbums);
       } catch (error) {
         console.error('Error fetching albums:', error);
@@ -61,6 +61,14 @@ function Albums() {
   const handleAlbumClick = (albumId) => {
     setSelectedAlbum(albumId);
   };
+  const handleAddAlbum = (newTitle) => {
+    const newAlbum={userId: userData.id,title:newTitle}
+    serverRequests('POST', 'albums', newAlbum).then((newAlbum)=>{
+      setSearcAlbums((prevAlbums) => [
+      ...prevAlbums,newAlbum])})
+      setAlbums(albums);
+  };
+  
   return (
     <>
      <br/>
@@ -75,6 +83,16 @@ function Albums() {
       </label>
       <img  className="clear" src={reset} onClick={()=>setSearcAlbums(albums)}></img>
         </div>
+        <button className="todoAddButton"
+          onClick={() => {
+            const newAlbum = prompt("Enter a new Album:");
+            if (newAlbum !== null) {
+              handleAddAlbum(newAlbum);
+            }
+          }}
+        >
+          Add Album
+        </button>
       <div className="albumsDiv">
       {searcAlbums.map((album,index) => (
         <Album

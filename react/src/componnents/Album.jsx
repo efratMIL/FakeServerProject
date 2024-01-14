@@ -15,6 +15,7 @@ function Album({ index, album, handleAlbumClick, selectedAlbum }) {
         handleAlbumClick(album.id)
         setIsPhoto(true)
     }
+    
     return (
         <div className="albumDiv">
             <span className="albumIndex album">{index}</span>
@@ -29,7 +30,7 @@ function Album({ index, album, handleAlbumClick, selectedAlbum }) {
                 <Modal
                     isOpen={isPhoto}
                     onRequestClose={closeModal}
-                    className='customStyles'
+                    className='photoModal'
                 >
                     <span className="close" onClick={closeModal}>&times;</span>
                     <Photos albumId={album.id} />
