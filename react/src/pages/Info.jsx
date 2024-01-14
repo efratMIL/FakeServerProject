@@ -1,6 +1,5 @@
 import './pages.css';
 import React,{useState,useContext} from 'react';
-import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import { userContext } from '../App';
 Modal.setAppElement(document.body);
