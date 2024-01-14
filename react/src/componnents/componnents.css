@@ -195,15 +195,20 @@ input[type='checkbox'] {
     margin-bottom: 4px;
 }
 
-.numDiv:hover {
+.numDiv:hover,.numDiv.selected {
     color: black;
     text-decoration: underline;
 }
+.numDiv{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    margin-right: 4px;
+}
 
-.currentPhotos{
+.currentPhotos {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Create four equal-width columns */
-    gap: 8px; /* Add some gap between the columns */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
     margin: 8px;
 }
 .photoModal{
@@ -213,13 +218,49 @@ input[type='checkbox'] {
     position: fixed;
     background-color: #EEB182;
     border-radius: 10px;
-    padding: 20px;
+    padding: 2px 10px;
     color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    width: 700px;
-    max-height: 80vh; 
-    overflow-y: auto; 
+    max-height: 93vh; 
 }
-.photosDiv{
-    margin-bottom: 0;
+
+.titleInDiv{
+    margin-bottom: 5px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+}
+
+.divsOfNumbers{
+    width: 700px;
+    text-align: center;
+
+}
+.photoDiv {
+    border: 2px solid white;
+    display: grid;
+    grid-template-rows: auto 1fr; 
+}
+.photosInDiv {
+    align-self: flex-end;
+    display: flex;
+}
+.modalHeader{
+    display: flex;
+}
+.photosHeader{
+    font-size: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+}
+.updateAndDelete{
+    margin-left: 15px;
+    margin-top: 50px;
+}
+.updateImage{
+    margin-top: 9px;
+}
+.deleteImage{
+    width: 40px;
+    height: 40px;
+    margin-left: -5px;
 }

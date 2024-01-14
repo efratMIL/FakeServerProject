@@ -33,7 +33,11 @@ function Todos() {
             todo.id === foundTodo.id ? { ...todo, title:foundTodo.title, completed: foundTodo.completed } : todo
           )
         );
-        setTodos(searcTodos);
+        setTodos((prevTodos) =>
+        prevTodos.map((todo) =>
+          todo.id === foundTodo.id ? { ...todo, title:foundTodo.title, completed: foundTodo.completed } : todo
+        )
+      );
       })
       .catch((error) => {
         console.error('Error updating todos:', error);
@@ -43,16 +47,19 @@ function Todos() {
  
   const handleDeleteTodo = (deleteTodo) => {
     serverRequests('DELETE', `todos/${deleteTodo.id}`, deleteTodo).then(()=>{
-      setSearcTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== deleteTodo.id));})
-    setTodos(todos)
+      setSearcTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== deleteTodo.id));
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== deleteTodo.id))
+  })
   };
 
   const handleAddTodo = (newTitle) => {
     const newTodo={userId: userData.id,title:newTitle,completed:false}
     serverRequests('POST', 'todos', newTodo).then((newTodo)=>{
       setSearcTodos((prevTodos) => [
-      ...prevTodos,newTodo])})
-      setTodos(todos);
+      ...prevTodos,newTodo])
+      setTodos((prevTodos) => [
+        ...prevTodos,newTodo]);
+    })
   };
 
   const handleFilterChange = (event) => {

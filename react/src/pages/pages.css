@@ -364,7 +364,7 @@ div {
     margin-right: 0;
 
 }
-.todoAddButton,.postAddButton{
+.todoAddButton,.postAddButton,.albumAddButton,.photoAddButton{
     background-color: #E09591;
     display: flex;
     justify-content: center;
@@ -381,6 +381,19 @@ div {
 }
 .postAddButton{
     margin-left: 900px;
+}
+.albumAddButton{
+    margin-left: 890px;
+}
+.photoAddButton{
+
+    border: 3px solid #EEB182 ;
+    color: #EEB182;
+    padding: 4px 10px;
+    margin-left: 415px;
+    background-color: white;
+    
+
 }
 .clear{
     width: 30px;

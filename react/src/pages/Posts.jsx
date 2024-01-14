@@ -10,6 +10,7 @@ function Posts() {
   const [posts, setPosts] = useState([]);
   const [searchPosts, setSearchPosts] = useState([]);
   const [selectedSearch, setSelectedSearch] = useState("");
+
   useEffect(() => {
     const fetchDataOfPosts = async () => {
       try {
@@ -58,8 +59,8 @@ function Posts() {
   const handleDeletePost = (deletePost) => {
     serverRequests('DELETE', `posts/${deletePost.id}`, deletePost).then(() => {
       setSearchPosts((prevPosts) => prevPosts.filter((post) => post.id !== deletePost.id));
+      setPosts((prevPosts) => prevPosts.filter((post) => post.id !== deletePost.id))
     })
-    setPosts(posts)
   };
 
   const UpdateDataOfPost = (updatePost) => {
@@ -70,7 +71,10 @@ function Posts() {
             post.id === foundPost.id ? { ...post, title: foundPost.title } : post
           )
         );
-        setPosts(searchPosts);
+        setPosts((prevPosts) =>
+        prevPosts.map((post) =>
+          post.id === foundPost.id ? { ...post, title: foundPost.title } : post
+        ));
       })
       .catch((error) => {
         console.error('Error updating posts:', error);
@@ -82,9 +86,13 @@ function Posts() {
     serverRequests('POST', 'posts', newPost).then((newPost) => {
       setSearchPosts((prevPosts) => [
         ...prevPosts, newPost])
+
+        setPosts((prevPosts) => [
+          ...prevPosts, newPost]);
+
     })
-    setPosts(posts);
   };
+  
   return (
     <>
       <br />
