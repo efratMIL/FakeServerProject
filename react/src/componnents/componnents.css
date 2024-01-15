@@ -169,7 +169,7 @@ input[type='checkbox'] {
     margin-bottom: 0;
 }
 
-.todoDiv, .postDiv, .albumDiv {
+.todoDiv, .postDiv, .albumDiv{
     justify-content: center;
     align-items: center;
     margin-left: 0;
@@ -268,4 +268,7 @@ input[type='checkbox'] {
 {
   width: 100%;
   height: 150px;
+}
+.clickedPost{
+    border: 2px solid black;
 }

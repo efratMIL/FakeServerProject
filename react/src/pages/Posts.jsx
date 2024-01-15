@@ -68,13 +68,13 @@ function Posts() {
       .then((foundPost) => {
         setSearchPosts((prevPosts) =>
           prevPosts.map((post) =>
-            post.id === foundPost.id ? { ...post, title: foundPost.title } : post
+            post.id === foundPost.id ? { ...post, title: foundPost.title,body:  foundPost.body } : post
           )
         );
         setPosts((prevPosts) =>
-        prevPosts.map((post) =>
-          post.id === foundPost.id ? { ...post, title: foundPost.title } : post
-        ));
+          prevPosts.map((post) =>
+            post.id === foundPost.id ? { ...post, title: foundPost.title,body:  foundPost.body } : post
+          ));
       })
       .catch((error) => {
         console.error('Error updating posts:', error);
@@ -87,12 +87,12 @@ function Posts() {
       setSearchPosts((prevPosts) => [
         ...prevPosts, newPost])
 
-        setPosts((prevPosts) => [
-          ...prevPosts, newPost]);
+      setPosts((prevPosts) => [
+        ...prevPosts, newPost]);
 
     })
   };
-  
+
   return (
     <>
       <br />
@@ -109,11 +109,18 @@ function Posts() {
         <button className="postAddButton"
           onClick={() => {
             const newTitlePost = prompt("Enter a title for the new post:");
-            if (newTitlePost !== null) {
-              const newBody = prompt("Enter a body for the new post:");
-              if (newBody !== null)
-                handleAddPost(newTitlePost, newBody);
+            if (newTitlePost === "") {
+              alert("post must have title")
             }
+            else {
+              const newBody = prompt("Enter a body for the new post:");
+              if (newBody !== "")
+                handleAddPost(newTitlePost, newBody);
+              else
+                alert("post must have body")
+
+            }
+
           }}
         >
           Add Post
