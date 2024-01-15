@@ -95,21 +95,20 @@ function Photos({ albumId }) {
                 </button>
             </div>
 
-            {loading ? (
-                <>
-                <p>Loading...</p>
-                </>
-            ) : (
+            {arrayOfObjectOf6Photos.length!=0 ? (
+
                 <div >
                     {arrayOfObjectOf6Photos.map((photosObject, index) => (
+
                         currentDiv === index + 1 && <div className="currentPhotos" key={index + 1}>
                             {Object.keys(photosObject).map((key) => (
+
                                 <div className='photoDiv' key={key}>
                                     <div className="titleInDiv" >
                                         <label >{photosObject[key].title}</label>
                                     </div>
                                     <div className="photosInDiv" >
-                                        <img src={photosObject[key].thumbnailUrl} />
+                                        <img className="photo" src={photosObject[key].thumbnailUrl} />
                                         <div className="updateAndDelete">
                                             <img className='deleteImage' src={del} onClick={() => handleDeletePhoto({ ...photosObject[key] })}></img>
                                             <img className='updateImage' src={update} onClick={() => {
@@ -128,8 +127,13 @@ function Photos({ albumId }) {
                         </div>
                     ))}
                 </div>
+            ) : (
+                <>
+                <br/>
+                <h1>NO Photos Yet...</h1>
+                <h3>to add more click above👆</h3>
+                </>
             )}
-
             <div className="divsOfNumbers">
                 {
                     arrayOfObjectOf6Photos.map((photosObject, index) =>
