@@ -68,12 +68,12 @@ function Posts() {
       .then((foundPost) => {
         setSearchPosts((prevPosts) =>
           prevPosts.map((post) =>
-            post.id === foundPost.id ? { ...post, title: foundPost.title,body:  foundPost.body } : post
+            post.id === foundPost.id ? { ...post, title: foundPost.title, body: foundPost.body } : post
           )
         );
         setPosts((prevPosts) =>
           prevPosts.map((post) =>
-            post.id === foundPost.id ? { ...post, title: foundPost.title,body:  foundPost.body } : post
+            post.id === foundPost.id ? { ...post, title: foundPost.title, body: foundPost.body } : post
           ));
       })
       .catch((error) => {
@@ -106,25 +106,25 @@ function Posts() {
           </select>
         </label>
         <img className="clear" src={reset} onClick={() => setSearchPosts(posts)}></img>
-        <button className="postAddButton"
+        <button
+          className="postAddButton"
           onClick={() => {
             const newTitlePost = prompt("Enter a title for the new post:");
-            if (newTitlePost === "") {
-              alert("post must have title")
-            }
-            else {
+            if (newTitlePost !== undefined && newTitlePost !== null&&newTitlePost!=="") {
               const newBody = prompt("Enter a body for the new post:");
-              if (newBody !== "")
+              if (newBody !== undefined && newBody !== null&&newBody!=="") {
                 handleAddPost(newTitlePost, newBody);
-              else
-                alert("post must have body")
-
+              } else {
+                alert("post must have body");
+              }
+            } else {
+              alert("post must have title");
             }
-
           }}
         >
           Add Post
         </button>
+
       </div>
       <div className="postsDiv">
         {searchPosts.map((post, index) => (

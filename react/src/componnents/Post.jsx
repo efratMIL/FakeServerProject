@@ -1,62 +1,76 @@
 import React, { useState } from "react";
-import del from "../pictures/delete.png";
+import del from "../pictures/delete-photo.png";
 import update from "../pictures/update.png";
 import './componnents.css';
 import Modal from 'react-modal';
+import Comments from "./Comments";
 Modal.setAppElement(document.body);
 
 function Post({ index, post, handleDeletePost, UpdateDataOfPost }) {
     const [isPost, setIsPost] = useState(false);
-    const [isClick,setIsClick]= useState(false);
+    const [isComments, setIsComments] = useState(false)
+
     function closeModal() {
         setIsPost(false);
-        setIsClick(false);
+        setIsComments(false);
     }
 
 
     return (
-        <div  className={`postDiv ${isClick ? "clickedPost" : ""}`}  onClick={()=>{setIsClick(!isClick)}}>
-            <span className="postIndex post">{index}</span>
-            <br />
-            <span className="post">id: {post.id}</span>
-            <br />
-            <label className="post"> {post.title}</label>
-            <button onClick={()=>setIsPost(true)}>Show More</button>
-            <br />
+        <div className="postDiv"  >
+            <div className="postFirstDetails">
+                <span className="postIndex post">{index}</span>
+                <span className="post">id: {post.id}</span>
+                <label className="post"> {post.title}</label>
+                <br />
+            </div>
+            <button className="postShowButton" onClick={() => setIsPost(true)}>Show More</button>
+
             {isPost &&
                 <Modal
                     isOpen={isPost}
                     onRequestClose={closeModal}
-                    className='photoModal'
+                    className='postModal'
                 >
                     <span className="close" onClick={closeModal}>&times;</span>
-                    <span className="postIndex post">{index}</span>
                     <br />
                     <span className="post">id: {post.id}</span>
                     <br />
-                    <label className="post"> {post.title}</label>
                     <br />
-                    <label className="post" >{post.body}</label>
-                    <br/>
-                    <div className="updateAndDelete">
+                    <label className="post">title: {post.title}</label>
+                    <br />
+                    <br />
+                    <label className="post" >body:{post.body}</label>
+                    <br />
+                    <div className="updateAndDeleteInPost">
                         <img className='deleteImage' src={del} onClick={() => handleDeletePost({ ...post })}></img>
                         <img className='updateImage' src={update} onClick={() => {
-                            const newTitlePost = prompt("Enter a new title for the post:");
-                            if (newTitlePost === "") {
-                              alert("post must have title")
+                            const newTitle = prompt("Enter new title:", post.title);
+                            if (newTitle !== null) {
+                                const newBody = prompt("Enter a new body for the post:", post.body);
+                                if (newBody !== null)
+                                    UpdateDataOfPost({ ...post, title: newTitle, body: newBody });
+                                else
+                                    alert("post must have body")
+
                             }
                             else {
-                              const newBody = prompt("Enter a new body for the post:");
-                              if (newBody !== "")
-                              UpdateDataOfPost({...post,title:newTitlePost,body:newBody});
-                              else
-                                alert("post must have body")
-                
-                            
+                                alert("post must have title")
+                                return;
                             }
                         }}></img>
                         <br />
                     </div>
+                    <br />
+                    <button className="commentAddButton" onClick={() => setIsComments(!isComments)}>{isComments ? "Close Comments❌" : "To All Comments👇"}</button>
+                    {isComments ? (
+                        <Comments postId={post.id} />
+                    ) : (
+                        <>
+                        </>
+                    )
+
+                    }
                 </Modal>
             }
 

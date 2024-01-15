@@ -5,7 +5,7 @@ import Photos from "./Photos";
 import Modal from 'react-modal';
 Modal.setAppElement(document.body);
 
-function Album({ index, album, handleAlbumClick, selectedAlbum }) {
+function Album({ index, album, handleAlbumClick }) {
     const [isPhoto, setIsPhoto] = useState(false);
 
     function closeModal() {
