@@ -9,7 +9,6 @@ import addComment from "../pictures/addComment.png";
 
 function Comments({ postId }) {
     const [comments, setComments] = useState([]);
-    const [loading, setLoading] = useState(true);
     const userData = useContext(userContext);
 
     useEffect(() => {
@@ -17,16 +16,12 @@ function Comments({ postId }) {
             try {
                 const response = await serverRequests('GET', `comments?postId=${postId}`, null);
                 setComments(response);
-                setLoading(false);
             } catch (error) {
                 console.error('Error fetching comments:', error);
-                setLoading(false);
             }
         };
-        setLoading(true);
         fetchComments();
     }, [postId]);
-
 
     function handleAddComment(newNameComment, newBody) {
         const newComment = { postId: postId, name: newNameComment, email: userData.email, body: newBody }
@@ -39,16 +34,12 @@ function Comments({ postId }) {
             });
 
     }
+
     function handleDeleteComments(deletedComment) {
-        if (deletedComment.email === userData.email) {
             serverRequests('DELETE', `comments/${deletedComment.id}`, deletedComment).then(() => {
                 setComments((prevComments) => prevComments.filter((comment) => comment.id !== deletedComment.id));
             })
-        }
-        else {
-            alert("can't delete other's comments")
-            return;
-        }
+       
     }
 
     function UpdateDataOfcomment(updateComment) {
@@ -104,10 +95,11 @@ function Comments({ postId }) {
                                 <label className="task">body: {comment.body}</label>
 
                                 <br />
-                                {<div className="updateAndDelete">
+                                {userData.email === comment.email?(
+                                    <div className="updateAndDelete">
                                     <img className='deleteImage' src={del} onClick={() => handleDeleteComments({ ...comment })}></img>
                                     <img className='updateImage' src={update} onClick={() => {
-                                        if (userData.email === comment.email) {
+                                        
                                             const newName = prompt("Enter new name:", comment.name);
                                             if (newName !== null) {
                                                 const newBody = prompt("Enter new body:", comment.body);
@@ -116,13 +108,15 @@ function Comments({ postId }) {
                                                 }
                                             }
                                         }
-                                        else {
-                                            alert("can't update other's comments")
-                                            return;
-                                        }
-                                    }}
+                                       
+                                    }
                                     ></img>
-                                </div>}
+                                </div>):
+                                (
+                                    <></>
+                                )
+                                }
+
                             </div>
                         )}
                     </>

@@ -9,8 +9,6 @@ function Albums() {
   const [albums, setAlbums] = useState([]);
   const [searcAlbums, setSearcAlbums] = useState([]);
   const [selectedSearch, setSelectedSearch] = useState("");
-  const [selectedAlbum, setSelectedAlbum] = useState("");
-
 
   useEffect(() => {
     const fetchDataOfAlbums = async () => {
@@ -38,8 +36,10 @@ function Albums() {
           const foundAlbums = albums.find((album) => album.id === parseInt(albumId));
           if (foundAlbums) {
             setSearcAlbums([foundAlbums]);
+            setSelectedSearch('')
           } else {
             alert("Album with the specified number not found");
+            setSelectedSearch('')
           }
         }
         break;
@@ -49,8 +49,10 @@ function Albums() {
           const foundAlbums = albums.find((album) => album.title === albumTitle);
           if (foundAlbums) {
             setSearcAlbums([foundAlbums]);
+            setSelectedSearch('')
           } else {
             alert("Album with the specified title not found");
+            setSelectedSearch('')
           }
         }
         break;
@@ -58,9 +60,9 @@ function Albums() {
         break;
     }
   };
-  const handleAlbumClick = (albumId) => {
-    setSelectedAlbum(albumId);
-  };
+
+  
+
   const handleAddAlbum = (newTitle) => {
     const newAlbum = { userId: userData.id, title: newTitle }
     serverRequests('POST', 'albums', newAlbum).then((newAlbum) => {
@@ -88,13 +90,17 @@ function Albums() {
           </select>
         </label>
         <img className="clear" src={reset} onClick={() => setSearcAlbums(albums)}></img>
-        <button className="albumAddButton"
+        <button
+          className="albumAddButton"
           onClick={() => {
             const newAlbum = prompt("Enter a new Album:");
-            if (newAlbum !== null) {
+            if (newAlbum !== null && newAlbum !== '' && newAlbum !== undefined) {
               handleAddAlbum(newAlbum);
+            } else {
+              alert('Album must have title...');
             }
           }}
+        
         >
           Add Album
         </button>
@@ -108,19 +114,17 @@ function Albums() {
                 key={album.id}
                 album={album}
                 index={index + 1}
-                handleAlbumClick={handleAlbumClick}
-                selectedAlbum={selectedAlbum}
               />
             ))}
           </>
         ) : (
           <>
-           <div className="noAlbums">
-            <br />
-            <h1>NO Albums Yet...</h1>
-            <br />
-            <h3>to add more click above👆</h3>
-          </div>
+            <div className="noAlbums">
+              <br />
+              <h1>NO Albums Yet...</h1>
+              <br />
+              <h3>to add more click above👆</h3>
+            </div>
           </>
         )}
       </div>

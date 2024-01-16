@@ -92,7 +92,7 @@ input[type='checkbox'] {
     text-decoration: none;
     color: #ff41ea;
     overflow: auto;
-    font-size: 200%;
+    font-size: 100%;
     text-align: left;
     cursor: pointer;
     display: flex;
@@ -104,7 +104,7 @@ input[type='checkbox'] {
     font-weight: bold;
     color: black;
     overflow: auto;
-    font-size: 200%;
+    font-size: 100%;
     text-align: left;
     cursor: pointer;
     display: flex;
@@ -273,7 +273,7 @@ input[type='checkbox'] {
 }
 .photo
 {
-  width: 100%;
+  width: 150px;
   height: 150px;
 }
 .clickedPost{
@@ -331,4 +331,8 @@ input[type='checkbox'] {
     top: -50px;
     right: 0;
 
+}
+.logOutImage{
+    width: 10%;
+    height: 10%;
 }

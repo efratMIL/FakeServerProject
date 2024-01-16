@@ -99,13 +99,13 @@ function Todos() {
       case "toDoNumber":
         const toDoNumber = prompt("Enter To Do Id:");
         if (toDoNumber !== null) {
-
           const foundTodo = todos.find((todo) => todo.id === parseInt(toDoNumber));
-
           if (foundTodo) {
             setSearcTodos([foundTodo]);
+            setSelectedSearch('')
           } else {
             alert("To Do with the specified number not found");
+            setSelectedSearch('')
           }
         }
         break;
@@ -115,8 +115,10 @@ function Todos() {
           const foundTodo = todos.find((todo) => todo.title === toDoTitle);
           if (foundTodo) {
             setSearcTodos([foundTodo]);
+            setSelectedSearch('')
           } else {
             alert("To Do with the specified title not found");
+            setSelectedSearch('')
           }
         }
         break;
@@ -124,11 +126,13 @@ function Todos() {
         setSearcTodos((prevTodos) =>
           prevTodos.filter((todo) => todo.completed)
         );
+        setSelectedSearch('')
         break;
       case "unCompleted":
         setSearcTodos((prevTodos) =>
           prevTodos.filter((todo) => todo.completed === false)
         );
+        setSelectedSearch('')
         break;
       default:
         break;

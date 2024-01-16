@@ -10,34 +10,6 @@ function SignIn({ setUserData }) {
   const navigate = useNavigate();
 
 
-  function checkPassword(password) {
-    // Check if the password is at least 8 characters long
-    if (password.length < 8) {
-      return false;
-    }
-    // Check if the password contains at least one uppercase letter
-    if (!/[A-Z]/.test(password)) {
-      return false;
-    }
-
-    // Check if the password contains at least one lowercase letter
-    if (!/[a-z]/.test(password)) {
-      return false;
-    }
-
-    // Check if the password contains at least one number
-    if (!/[0-9]/.test(password)) {
-      return false;
-    }
-
-    // Check if the password contains at least one special character
-    if (!/[@#$%^&+=!]/.test(password)) {
-      return false;
-    }
-
-    // If all checks pass, the password is valid
-    return true;
-  }
 
   function checkPasswordMatch(password1, confirmPassword) {
     if (password1 !== confirmPassword) {
@@ -54,10 +26,10 @@ function SignIn({ setUserData }) {
       return;
     }
 
-    // if (!checkPassword(password)) {
-    //   alert('The password you chose is not strong enough');
-    //   return;
-    // }
+    if ( password.length < 8) {
+      alert('The password you chose is not strong enough');
+      return;
+    }
 
     if (!checkPasswordMatch(password, confirmPassword)) {
       alert('Passwords do not match. Please try again.');
@@ -89,7 +61,7 @@ function SignIn({ setUserData }) {
               setUserData(savedUser)
               console.log(savedUser)
             })
-        navigate('/endOfRegistration');
+        navigate('/end-of-registration');
           }
       })
   }
@@ -130,10 +102,6 @@ return (
         onChange={(e) => setConfirmPassword(e.target.value)}
       />
       <br />
-      <input className="takanon" type="checkbox" name="scales" required />
-      <label className="takanon" htmlFor="scales">
-        I agree to accept all site conditions
-      </label>
 
       <input className="btns" type="submit" onClick={signIn} value="Add others details" />
       <br />

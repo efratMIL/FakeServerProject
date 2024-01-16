@@ -115,6 +115,7 @@ input[type='checkbox'] {
     align-items: center;
     margin: 0 20px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    overflow: hidden;
 
 }
 
@@ -130,6 +131,7 @@ input[type='checkbox'] {
     align-items: center;
     margin: 0 20px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+overflow: hidden;
 }
 
 .endOfRegister {

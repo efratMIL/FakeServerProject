@@ -12,19 +12,6 @@ function Posts() {
   const [searchPosts, setSearchPosts] = useState([]);
   const [selectedSearch, setSelectedSearch] = useState("");
   const [isMyPost, setIsMyPost] = useState(true);
-  // useEffect(() => {
-  //   const fetchDataOfPosts = async () => {
-  //     try {
-  //       const response = await serverRequests('GET', `users/${JSON.stringify(userData.id)}/posts`, null);
-  //       const foundTodos = response;
-  //       setPosts(foundTodos);
-  //      setSearchPosts(foundTodos);
-  //     } catch (error) {
-  //       console.error('Error fetching posts:', error);
-  //     }
-  //   };
-  //   fetchDataOfPosts();
-  // }, []);
 
   useEffect(() => {
     const fetchDataOfAllPosts = async () => {
@@ -55,22 +42,26 @@ function Posts() {
       case "postNumber":
         const postNumber = prompt("Enter post Id:");
         if (postNumber !== null) {
-          const foundPost = myPosts.find((post) => post.id === parseInt(postNumber));
+          const foundPost = searchPosts.find((post) => post.id === parseInt(postNumber));
           if (foundPost) {
             setSearchPosts([foundPost]);
+            setSelectedSearch('')
           } else {
             alert("Post with the specified id not found");
+            setSelectedSearch('')
           }
         }
         break;
       case "title":
         const postTitle = prompt("Enter post title:");
         if (postTitle !== null) {
-          const foundPost = myPosts.find((post) => post.title === postTitle);
+          const foundPost = searchPosts.find((post) => post.title === postTitle);
           if (foundPost) {
             setSearchPosts([foundPost]);
+            setSelectedSearch('')
           } else {
             alert("Post with the specified title not found");
+            setSelectedSearch('')
           }
         }
         break;
@@ -129,8 +120,8 @@ function Posts() {
           </select>
         </label>
         <img className="clear" src={reset} onClick={() => { isMyPost ? setSearchPosts(myPosts) : setSearchPosts(allPosts) }}></img>
-        <button className="allPostButton" onClick={() => { setSearchPosts(allPosts), setIsMyPost(false) }}>All Posts</button>
-        <button className="myPostButton" onClick={() => { setSearchPosts(myPosts), setIsMyPost(true) }}>My Posts</button>
+        <button className="allPostButton" onClick={() => { setSearchPosts(allPosts), setIsMyPost(false) ,setSelectedSearch('')}}>All Posts</button>
+        <button className="myPostButton" onClick={() => { setSearchPosts(myPosts), setIsMyPost(true),setSelectedSearch('') }}>My Posts</button>
         <button
           className="postAddButton"
           onClick={() => {

@@ -3,6 +3,8 @@ import { Link, NavLink, Outlet } from "react-router-dom"
 import "./componnents.css"
 import { showHeadersContext } from "../App";
 import logo2 from "../pictures/logo2.png";
+import logOut from "../pictures/logOut.png";
+
 import { userContext } from "../App";
 export default function Header({ setShowHeaders }) {
     const showHeaders = useContext(showHeadersContext);
@@ -52,13 +54,7 @@ export default function Header({ setShowHeaders }) {
                         >
                             Home
                         </NavLink>
-                        <NavLink
-                            to=".."
-                            className={({ isActive }) => (isActive ? 'activeStyles' : 'unActiveStyle')}
-                            onClick={handleLogOut}
-                        >
-                            Log Out
-                        </NavLink>
+
                         <NavLink
                             to={`users/${userData.id}/albums`}
                             className={({ isActive }) => (isActive ? 'activeStyles' : 'unActiveStyle')}
@@ -76,6 +72,13 @@ export default function Header({ setShowHeaders }) {
                             className={({ isActive }) => (isActive ? 'activeStyles' : 'unActiveStyle')}
                         >
                             Todos
+                        </NavLink>
+                        <NavLink
+                            to=".."
+                            className={({ isActive }) => (isActive ? 'activeStyles' : 'unActiveStyle')}
+                            onClick={handleLogOut}
+                        >
+                            Log Out<img className="logOutImage" src={logOut}></img>
                         </NavLink>
                         {/* <NavLink
                             to={`users/${userData.id}/info`}

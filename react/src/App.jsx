@@ -17,9 +17,18 @@ export const showHeadersContext = createContext();
 
 function App() {
 
-    const [userData, setUserData] = useState({});
-    const [showHeaders, setShowHeaders] = useState(false);
-
+  
+    const storedUser = JSON.parse(localStorage.getItem('thisUser')) || {};
+    const storedShowHeaders = localStorage.getItem('showHeaders') === 'true';
+  
+    const [userData, setUserData] = useState(storedUser);
+    const [showHeaders, setShowHeaders] = useState(storedShowHeaders);
+  
+    useEffect(() => {
+      localStorage.setItem('thisUser', JSON.stringify(userData));
+      localStorage.setItem('showHeaders', showHeaders);
+    }, [userData, showHeaders]);
+  
     return (
         <showHeadersContext.Provider value={showHeaders}>
             <userContext.Provider value={userData}>
@@ -27,9 +36,9 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Layout setShowHeaders={setShowHeaders} />}>
                             <Route index element={<Welcome />} />
-                            <Route path='login' element={<LogIn userData={userData} setUserData={setUserData} setShowHeaders={setShowHeaders} />} />
+                            <Route path='login' element={<LogIn  setUserData={setUserData} setShowHeaders={setShowHeaders} />} />
                             <Route path="register" element={<SignIn setUserData={setUserData} />} />
-                            <Route path="endOfRegistration" element={<EndOfRegistration setUserData={setUserData} setShowHeaders={setShowHeaders} />} />
+                            <Route path="end-of-registration" element={<EndOfRegistration setUserData={setUserData} setShowHeaders={setShowHeaders} />} />
                             <Route path="home" element={<Home setUserData={setUserData} />} />
                             <Route path="users/:id/albums" element={<Albums />} >
                                 <Route path=":albumId/photos" element={<Photos />} />
