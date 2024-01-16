@@ -1,15 +1,15 @@
-import React, { useState, useEffect,useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './pages.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { serverRequests } from '../Api';
 
-function SignIn({ setLocalStorageUserData,setShowHeaders}) {
+function SignIn({ setUserData }) {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const navigate = useNavigate(); 
-  
-     
+  const navigate = useNavigate();
+
+
   function checkPassword(password) {
     // Check if the password is at least 8 characters long
     if (password.length < 8) {
@@ -47,7 +47,7 @@ function SignIn({ setLocalStorageUserData,setShowHeaders}) {
   }
 
   function signIn(event) {
-    event.preventDefault(); 
+    event.preventDefault();
 
     if (password === '' || userName === '') {
       alert('Please enter both username and password');
@@ -64,79 +64,82 @@ function SignIn({ setLocalStorageUserData,setShowHeaders}) {
       return;
     }
     serverRequests('GET', `users?username=${userName}`, null)
-    .then((isUserExist)=>
-    {
+      .then((isUserExist) => {
 
-    if (isUserExist.length!=0) {
-      console.log(isUserExist.length)
-      const userDecision = confirm(
-        'You already exist in the system. Do you want to log in?'
-      );
-      if (userDecision) {
-        navigate('/login');
-      }
-      else {
-        return;
-      }
-    } else {
-      console.log(isUserExist.length)
-      const currentUser = {
-        userName: userName,
-        password: password
-      };
-      alert(`${userName} we are glad you joined us😊`);
-      setLocalStorageUserData(currentUser);
-      localStorage.setItem('thisUser', JSON.stringify(currentUser));
-      navigate('/endOfRegistration');
-    }
-  })
-    
-    
+        if (isUserExist.length != 0) {
+          console.log(isUserExist.length)
+          const userDecision = confirm(
+            'You already exist in the system. Do you want to log in?'
+          );
+          if (userDecision) {
+            navigate('/login');
+          }
+          else {
+            return;
+          }
+        } else {
+          console.log(isUserExist.length)
+          const currentUser = {
+            username: userName,
+            website: password
+          };
+          alert(`${userName} we are glad you joined us😊`);
+          serverRequests('POST', 'users', currentUser)
+            .then((savedUser) => {
+              setUserData(savedUser)
+              console.log(savedUser)
+            })
+        navigate('/endOfRegistration');
+          }
+      })
   }
 
-  return (
-    <>
-      <form className="sign_in" >
-        <br />
-        <input
-          className="username inputs"
-          type="text"
-          placeholder="User name"
-          required
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-        />
-        <br />
-        <br />
-        <input
-          className="username inputs"
-          type="password"
-          placeholder="password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br />
-        <br />
-        <input
-          className="username inputs"
-          type="password"
-          placeholder="password validation"
-          required
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-        <br />
-        <input className="takanon" type="checkbox" name="scales" required />
-        <label className="takanon" htmlFor="scales">
-          I agree to accept all site conditions
-        </label>
 
-        <input className="btns" type="submit" onClick={signIn} value="Add others details" />
-        <br />
-      </form>
-    </>
-  );
+
+
+return (
+  <>
+    <form className="sign_in" >
+      <br />
+      <input
+        className="username inputs"
+        type="text"
+        placeholder="User name"
+        required
+        value={userName}
+        onChange={(e) => setUserName(e.target.value)}
+      />
+      <br />
+      <br />
+      <input
+        className="username inputs"
+        type="password"
+        placeholder="password"
+        required
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <br />
+      <br />
+      <input
+        className="username inputs"
+        type="password"
+        placeholder="password validation"
+        required
+        value={confirmPassword}
+        onChange={(e) => setConfirmPassword(e.target.value)}
+      />
+      <br />
+      <input className="takanon" type="checkbox" name="scales" required />
+      <label className="takanon" htmlFor="scales">
+        I agree to accept all site conditions
+      </label>
+
+      <input className="btns" type="submit" onClick={signIn} value="Add others details" />
+      <br />
+    </form>
+  </>
+);
 }
 
 export default SignIn;

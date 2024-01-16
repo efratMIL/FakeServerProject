@@ -366,7 +366,7 @@ div {
     margin-bottom: 40px;
 
 }
-.todoAddButton,.postAddButton,.albumAddButton,.photoAddButton{
+.todoAddButton,.postAddButton,.albumAddButton,.photoAddButton,.myPostButton,.allPostButton{
     background-color: #E09591;
     display: flex;
     justify-content: center;
@@ -385,7 +385,15 @@ div {
     right: 5px;
 }
 .postAddButton{
-    margin-left: 900px;
+    right: 10px;
+}
+.myPostButton{
+    right: 150px;
+
+}
+.allPostButton{
+    right: 300px;
+
 }
 .albumAddButton{
     margin-left: 890px;
@@ -435,4 +443,8 @@ padding: 4px;
     background-color: white;
     cursor: pointer;
     font-weight: bold;
+}
+.required{
+    color: red;
+    font-size: 20px;
 }

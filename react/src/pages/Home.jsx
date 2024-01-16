@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
 import './pages.css';
-import { NavLink, useNavigate } from 'react-router-dom';
 import { userContext } from '../App';
 import Info from './Info';
 
 function Home() {
     const userData = useContext(userContext);
+
     const [isInfo, setIsInfo] = useState(false);
 
     return (

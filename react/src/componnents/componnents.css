@@ -310,8 +310,8 @@ input[type='checkbox'] {
     padding: 2px 10px;
     color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    width: 500px;
-    height: 300px;
+    width: 50%;
+    height: 70%;
     position: relative;
     overflow: auto;
 }

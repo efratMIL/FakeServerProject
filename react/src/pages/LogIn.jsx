@@ -2,11 +2,28 @@ import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './pages.css';
 import { serverRequests } from '../Api';
+import { userContext } from '../App';
+
 
 function LogIn({ setUserData, setShowHeaders }) {
+  const userData = useContext(userContext);
   const [userName, setuserName] = useState('');
   const [password, setPassword] = useState('');
+
   const navigate = useNavigate();
+  function checkEndOfRegistration() {
+    const lsUser = localStorage.getItem("thisUser")
+    console.log(userData)
+    if (
+      !userData.name ||
+      !userData.email ||
+      !userData.phone
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   function logIn(event) {
     event.preventDefault();
@@ -28,22 +45,31 @@ function LogIn({ setUserData, setShowHeaders }) {
           }
         } else {
           if (foundUser[0].website === password) {
-            alert(`${foundUser[0].username} we're glad you're back`);
-            setShowHeaders(true)
             setUserData(foundUser[0])
-            console.log(foundUser);
-            const currentUser = {
-              userName: userName,
-              password: password
-            };
-            localStorage.setItem('thisUser', JSON.stringify(currentUser))
+            const { website, ...userDataWithoutWebsite } =foundUser[0];
+            localStorage.setItem('thisUser', JSON.stringify(userDataWithoutWebsite))
+            if (checkEndOfRegistration()) {
+              alert(`${foundUser[0].username} we're glad you're back`);
+              setShowHeaders(true)
               navigate('/home')
+            }
+            else{
+              const userDecision = confirm(
+                'Please fill in all fields before login.'
+              );
+              if (userDecision) {
+                navigate('/endOfRegistration');
+              } else {
+                return;
+              }
+            }
           } else {
             alert('Your password is incorrect');
             setPassword("");
           }
         }
       })
+ 
   }
   return (
     <>

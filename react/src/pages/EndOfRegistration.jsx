@@ -2,16 +2,16 @@ import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './pages.css';
 import { serverRequests } from '../Api';
-import { localStorageUserContext } from '../App'
+import { userContext } from '../App'
 
 function EndOfRegistration({ setUserData, setShowHeaders }) {
-  const UserData = useContext(localStorageUserContext);
-  const { userName, password } = UserData
+  const userData = useContext(userContext);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
+    id:userData.id,
     name: "",
-    username: userName,
+    username: userData.username,
     email: "",
     address: {
       street: "",
@@ -24,7 +24,7 @@ function EndOfRegistration({ setUserData, setShowHeaders }) {
       }
     },
     phone: "",
-    website: password,
+    website: userData.website,
     company: {
       name: "",
       catchPhrase: "",
@@ -38,31 +38,26 @@ function EndOfRegistration({ setUserData, setShowHeaders }) {
       if (
         !formData.name ||
         !formData.email ||
-        !formData.phone ||
-        !formData.address.street ||
-        !formData.address.suite ||
-        !formData.address.city ||
-        !formData.address.zipcode ||
-        !formData.address.geo.lat ||
-        !formData.address.geo.lng ||
-        !formData.company.name ||
-        !formData.company.catchPhrase ||
-        !formData.company.bs
+        !formData.phone 
+      
       ) {
-        alert('Please fill in all fields before submitting.');
+        alert('Please fill in all the * fields before submitting.');
         return;
       }
-  
-    serverRequests('POST', 'users', formData)
+      console.log(formData)
+    serverRequests('PUT', `users/${userData.id}`, formData)
       .then((savedUser) => {
         setUserData(savedUser)
+        const { website, ...userDataWithoutWebsite } = savedUser;
+        localStorage.setItem('thisUser', JSON.stringify(userDataWithoutWebsite));
         setShowHeaders(true)
-        console.log(savedUser)
+
       });
     navigate('/home');
-  }
+ }
 
   function handleChange(event) {
+    setFormData({...formData,id:userData.id,username:userData.username,website:userData.website})
     const { name, value } = event.target;
     setFormData(prevFormData => {
       const properties = name.split('.');
@@ -104,6 +99,7 @@ function EndOfRegistration({ setUserData, setShowHeaders }) {
         <div className='divPersonalDetails'>
           <h3>Personal Details:</h3>
           <br />
+          <label className='required'>*</label>
           <input
             className="name inputs"
             type="text"
@@ -114,6 +110,7 @@ function EndOfRegistration({ setUserData, setShowHeaders }) {
             onChange={handleChange}
           />
           <br />
+          <label className='required'>*</label>
           <input
             className="email inputs"
             type="email"
@@ -124,6 +121,7 @@ function EndOfRegistration({ setUserData, setShowHeaders }) {
             onChange={handleChange}
           />
           <br />
+          <label className='required'>*</label>
           <input
             className="phone inputs"
             type="tel"

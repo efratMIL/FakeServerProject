@@ -7,23 +7,46 @@ import reset from "../pictures/clear.png";
 
 function Posts() {
   const userData = useContext(userContext);
-  const [posts, setPosts] = useState([]);
+  const [myPosts, setMyPosts] = useState([]);
+  const [allPosts, setAllPosts] = useState([]);
   const [searchPosts, setSearchPosts] = useState([]);
   const [selectedSearch, setSelectedSearch] = useState("");
+  const [isMyPost, setIsMyPost] = useState(true);
+  // useEffect(() => {
+  //   const fetchDataOfPosts = async () => {
+  //     try {
+  //       const response = await serverRequests('GET', `users/${JSON.stringify(userData.id)}/posts`, null);
+  //       const foundTodos = response;
+  //       setPosts(foundTodos);
+  //      setSearchPosts(foundTodos);
+  //     } catch (error) {
+  //       console.error('Error fetching posts:', error);
+  //     }
+  //   };
+  //   fetchDataOfPosts();
+  // }, []);
 
   useEffect(() => {
-    const fetchDataOfPosts = async () => {
+    const fetchDataOfAllPosts = async () => {
       try {
-        const response = await serverRequests('GET', `users/${JSON.stringify(userData.id)}/posts`, null);
-        const foundTodos = response;
-        setPosts(foundTodos);
-        setSearchPosts(foundTodos);
+        await serverRequests('GET', `posts`, null).then((foundTodos) => {
+          setAllPosts(foundTodos);
+
+        })
       } catch (error) {
         console.error('Error fetching posts:', error);
       }
     };
-    fetchDataOfPosts();
+    fetchDataOfAllPosts();
   }, []);
+
+  useEffect(() => {
+    setMyPosts(
+      allPosts.filter((post) => post.userId === userData.id)
+    )
+    setSearchPosts(myPosts)
+
+  }, [allPosts]);
 
   const handleSearchChange = (event) => {
     const newSearch = event.target.value;
@@ -32,7 +55,7 @@ function Posts() {
       case "postNumber":
         const postNumber = prompt("Enter post Id:");
         if (postNumber !== null) {
-          const foundPost = posts.find((post) => post.id === parseInt(postNumber));
+          const foundPost = myPosts.find((post) => post.id === parseInt(postNumber));
           if (foundPost) {
             setSearchPosts([foundPost]);
           } else {
@@ -43,7 +66,7 @@ function Posts() {
       case "title":
         const postTitle = prompt("Enter post title:");
         if (postTitle !== null) {
-          const foundPost = posts.find((post) => post.title === postTitle);
+          const foundPost = myPosts.find((post) => post.title === postTitle);
           if (foundPost) {
             setSearchPosts([foundPost]);
           } else {
@@ -59,7 +82,7 @@ function Posts() {
   const handleDeletePost = (deletePost) => {
     serverRequests('DELETE', `posts/${deletePost.id}`, deletePost).then(() => {
       setSearchPosts((prevPosts) => prevPosts.filter((post) => post.id !== deletePost.id));
-      setPosts((prevPosts) => prevPosts.filter((post) => post.id !== deletePost.id))
+      setMyPosts((prevPosts) => prevPosts.filter((post) => post.id !== deletePost.id))
     })
   };
 
@@ -71,7 +94,7 @@ function Posts() {
             post.id === foundPost.id ? { ...post, title: foundPost.title, body: foundPost.body } : post
           )
         );
-        setPosts((prevPosts) =>
+        setMyPosts((prevPosts) =>
           prevPosts.map((post) =>
             post.id === foundPost.id ? { ...post, title: foundPost.title, body: foundPost.body } : post
           ));
@@ -87,7 +110,7 @@ function Posts() {
       setSearchPosts((prevPosts) => [
         ...prevPosts, newPost])
 
-      setPosts((prevPosts) => [
+      setMyPosts((prevPosts) => [
         ...prevPosts, newPost]);
 
     })
@@ -105,14 +128,16 @@ function Posts() {
             <option value="title">Title</option>
           </select>
         </label>
-        <img className="clear" src={reset} onClick={() => setSearchPosts(posts)}></img>
+        <img className="clear" src={reset} onClick={() => { isMyPost ? setSearchPosts(myPosts) : setSearchPosts(allPosts) }}></img>
+        <button className="allPostButton" onClick={() => { setSearchPosts(allPosts), setIsMyPost(false) }}>All Posts</button>
+        <button className="myPostButton" onClick={() => { setSearchPosts(myPosts), setIsMyPost(true) }}>My Posts</button>
         <button
           className="postAddButton"
           onClick={() => {
             const newTitlePost = prompt("Enter a title for the new post:");
-            if (newTitlePost !== undefined && newTitlePost !== null&&newTitlePost!=="") {
+            if (newTitlePost !== undefined && newTitlePost !== null && newTitlePost !== "") {
               const newBody = prompt("Enter a body for the new post:");
-              if (newBody !== undefined && newBody !== null&&newBody!=="") {
+              if (newBody !== undefined && newBody !== null && newBody !== "") {
                 handleAddPost(newTitlePost, newBody);
               } else {
                 alert("post must have body");

@@ -6,11 +6,7 @@ Modal.setAppElement(document.body);
 
 function Info({setIsInfo,isInfo}) {
   const userData = useContext(userContext);
-  
-
-  function openModal() {
-    setIsInfo(true);
-  }
+ 
   function closeModal() {
     setIsInfo(false);
   }
