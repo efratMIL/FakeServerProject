@@ -420,10 +420,19 @@ padding: 4px;
 .task{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
 .noTodos,.noPosts,.noAlbums{
     width: 200%;
     margin-left: 100%;
     margin-top: 50%;
     justify-content: center;
     text-align: center;
+}
+.commentAddButton{
+    border: 3px solid #EEB182 ;
+    color: #EEB182;
+    padding: 4px 10px;
+    background-color: white;
+    cursor: pointer;
+    font-weight: bold;
 }
