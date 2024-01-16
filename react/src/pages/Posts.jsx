@@ -68,12 +68,12 @@ function Posts() {
       .then((foundPost) => {
         setSearchPosts((prevPosts) =>
           prevPosts.map((post) =>
-            post.id === foundPost.id ? { ...post, title: foundPost.title,body:  foundPost.body } : post
+            post.id === foundPost.id ? { ...post, title: foundPost.title, body: foundPost.body } : post
           )
         );
         setPosts((prevPosts) =>
           prevPosts.map((post) =>
-            post.id === foundPost.id ? { ...post, title: foundPost.title,body:  foundPost.body } : post
+            post.id === foundPost.id ? { ...post, title: foundPost.title, body: foundPost.body } : post
           ));
       })
       .catch((error) => {
@@ -127,15 +127,29 @@ function Posts() {
         </button>
       </div>
       <div className="postsDiv">
-        {searchPosts.map((post, index) => (
-          <Post
-            key={post.id}
-            post={post}
-            index={index + 1}
-            handleDeletePost={handleDeletePost}
-            UpdateDataOfPost={UpdateDataOfPost}
-          />
-        ))}
+        {searchPosts.length !== 0 ? (
+          <>
+            {
+              searchPosts.map((post, index) => (
+                <Post
+                  key={post.id}
+                  post={post}
+                  index={index + 1}
+                  handleDeletePost={handleDeletePost}
+                  UpdateDataOfPost={UpdateDataOfPost}
+                />
+              ))
+            }
+          </>
+        ) : (
+          <div className="noPosts">
+            <br />
+            <h1>NO Posts Yet...</h1>
+            <br />
+            <h3>to add more click above👆</h3>
+          </div>
+        )
+        }
       </div>
     </>
   );

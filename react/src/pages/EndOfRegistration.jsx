@@ -34,6 +34,25 @@ function EndOfRegistration({ setUserData, setShowHeaders }) {
 
   function endSign(e) {
     e.preventDefault();
+
+      if (
+        !formData.name ||
+        !formData.email ||
+        !formData.phone ||
+        !formData.address.street ||
+        !formData.address.suite ||
+        !formData.address.city ||
+        !formData.address.zipcode ||
+        !formData.address.geo.lat ||
+        !formData.address.geo.lng ||
+        !formData.company.name ||
+        !formData.company.catchPhrase ||
+        !formData.company.bs
+      ) {
+        alert('Please fill in all fields before submitting.');
+        return;
+      }
+  
     serverRequests('POST', 'users', formData)
       .then((savedUser) => {
         setUserData(savedUser)

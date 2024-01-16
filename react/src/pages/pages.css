@@ -362,6 +362,8 @@ div {
 .todoButtonsDiV,.postButtonsDiV,.albumsButtonsDiV{
     display: flex;
     margin-right: 0;
+    position: relative;
+    margin-bottom: 40px;
 
 }
 .todoAddButton,.postAddButton,.albumAddButton,.photoAddButton{
@@ -378,6 +380,9 @@ div {
     border-radius: 5px;
     cursor: pointer;
     margin-left: 630px;
+    position: absolute;
+    top: 0;
+    right: 5px;
 }
 .postAddButton{
     margin-left: 900px;
@@ -414,4 +419,11 @@ padding: 4px;
 }
 .task{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.noTodos,.noPosts,.noAlbums{
+    width: 200%;
+    margin-left: 100%;
+    margin-top: 50%;
+    justify-content: center;
+    text-align: center;
 }

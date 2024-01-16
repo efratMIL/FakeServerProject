@@ -180,8 +180,12 @@ input[type='checkbox'] {
     padding: 3px;
     padding-bottom: 0;
     padding-top: 0;
+    position: relative;
 }
+.postDiv{
+    padding-right: 100px;
 
+}
 .todoIndex, .postIndex {
     font-size: 20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -271,4 +275,20 @@ input[type='checkbox'] {
 }
 .clickedPost{
     border: 2px solid black;
+}
+.showMore{
+    background-color: #E09591;
+    display: flex;
+    justify-content: center;
+    max-height: 55px;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 10px;
+    color: #fff;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }

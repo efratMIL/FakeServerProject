@@ -101,15 +101,28 @@ function Albums() {
       </div>
 
       <div className="albumsDiv">
-        {searcAlbums.map((album, index) => (
-          <Album
-            key={album.id}
-            album={album}
-            index={index + 1}
-            handleAlbumClick={handleAlbumClick}
-            selectedAlbum={selectedAlbum}
-          />
-        ))}
+        {searcAlbums.length !== 0 ? (
+          <>
+            {searcAlbums.map((album, index) => (
+              <Album
+                key={album.id}
+                album={album}
+                index={index + 1}
+                handleAlbumClick={handleAlbumClick}
+                selectedAlbum={selectedAlbum}
+              />
+            ))}
+          </>
+        ) : (
+          <>
+           <div className="noAlbums">
+            <br />
+            <h1>NO Albums Yet...</h1>
+            <br />
+            <h3>to add more click above👆</h3>
+          </div>
+          </>
+        )}
       </div>
     </>
   );

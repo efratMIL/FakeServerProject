@@ -10,7 +10,7 @@ function Todos() {
   const [searcTodos, setSearcTodos] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState("");
   const [selectedSearch, setSelectedSearch] = useState("");
-  
+
   useEffect(() => {
     const fetchDataOfTodos = async () => {
       try {
@@ -22,7 +22,7 @@ function Todos() {
         console.error('Error fetching todos:', error);
       }
     };
-      fetchDataOfTodos();
+    fetchDataOfTodos();
   }, []);
 
   const UpdateDataOfTodos = (updateTodo) => {
@@ -30,35 +30,35 @@ function Todos() {
       .then((foundTodo) => {
         setSearcTodos((prevTodos) =>
           prevTodos.map((todo) =>
-            todo.id === foundTodo.id ? { ...todo, title:foundTodo.title, completed: foundTodo.completed } : todo
+            todo.id === foundTodo.id ? { ...todo, title: foundTodo.title, completed: foundTodo.completed } : todo
           )
         );
         setTodos((prevTodos) =>
-        prevTodos.map((todo) =>
-          todo.id === foundTodo.id ? { ...todo, title:foundTodo.title, completed: foundTodo.completed } : todo
-        )
-      );
+          prevTodos.map((todo) =>
+            todo.id === foundTodo.id ? { ...todo, title: foundTodo.title, completed: foundTodo.completed } : todo
+          )
+        );
       })
       .catch((error) => {
         console.error('Error updating todos:', error);
       });
   };
-  
- 
+
+
   const handleDeleteTodo = (deleteTodo) => {
-    serverRequests('DELETE', `todos/${deleteTodo.id}`, deleteTodo).then(()=>{
+    serverRequests('DELETE', `todos/${deleteTodo.id}`, deleteTodo).then(() => {
       setSearcTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== deleteTodo.id));
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== deleteTodo.id))
-  })
+      setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== deleteTodo.id))
+    })
   };
 
   const handleAddTodo = (newTitle) => {
-    const newTodo={userId: userData.id,title:newTitle,completed:false}
-    serverRequests('POST', 'todos', newTodo).then((newTodo)=>{
+    const newTodo = { userId: userData.id, title: newTitle, completed: false }
+    serverRequests('POST', 'todos', newTodo).then((newTodo) => {
       setSearcTodos((prevTodos) => [
-      ...prevTodos,newTodo])
+        ...prevTodos, newTodo])
       setTodos((prevTodos) => [
-        ...prevTodos,newTodo]);
+        ...prevTodos, newTodo]);
     })
   };
 
@@ -97,17 +97,17 @@ function Todos() {
     setSelectedSearch(newSearch);
     switch (newSearch) {
       case "toDoNumber":
-          const toDoNumber = prompt("Enter To Do Id:");
-          if (toDoNumber !== null) {
+        const toDoNumber = prompt("Enter To Do Id:");
+        if (toDoNumber !== null) {
 
-            const foundTodo = todos.find((todo) => todo.id === parseInt(toDoNumber));
+          const foundTodo = todos.find((todo) => todo.id === parseInt(toDoNumber));
 
-            if (foundTodo) {
-              setSearcTodos([foundTodo]);
-            } else {
-              alert("To Do with the specified number not found");
-            }
+          if (foundTodo) {
+            setSearcTodos([foundTodo]);
+          } else {
+            alert("To Do with the specified number not found");
           }
+        }
         break;
       case "title":
         const toDoTitle = prompt("Enter To Do title:");
@@ -127,7 +127,7 @@ function Todos() {
         break;
       case "unCompleted":
         setSearcTodos((prevTodos) =>
-          prevTodos.filter((todo) => todo.completed===false)
+          prevTodos.filter((todo) => todo.completed === false)
         );
         break;
       default:
@@ -136,31 +136,31 @@ function Todos() {
   };
   return (
     <>
-     <br/>
+      <br />
       <div className="todoButtonsDiV">
-      <label>
-        Sort by:
-        <select value={selectedFilter} onChange={handleFilterChange}>
-        <option value="">👇</option>
-          <option value="serial" >Serial</option>
-          <option value="randomaly">Randomaly</option>
-          <option value="completed">Completed</option>
-          <option value="alphabetical">Alphabetical</option>
-        </select>
-      </label>
-      
-      <label >
-        Search by:                     
-        <select value={selectedSearch} onChange={handleSearchChange} >
-        <option value="">👇</option>
-          <option value="toDoNumber" >To Do Id</option>
-          <option value="title">Title</option>
-          <option value="completed">Completed</option>
-          <option value="unCompleted">Un Completed</option>
-        </select>
-      </label>
-      <img  className="clear" src={reset} onClick={()=>setSearcTodos(todos)}></img>
-      <button className="todoAddButton"
+        <label>
+          Sort by:
+          <select value={selectedFilter} onChange={handleFilterChange}>
+            <option value="">👇</option>
+            <option value="serial" >Serial</option>
+            <option value="randomaly">Randomaly</option>
+            <option value="completed">Completed</option>
+            <option value="alphabetical">Alphabetical</option>
+          </select>
+        </label>
+
+        <label >
+          Search by:
+          <select value={selectedSearch} onChange={handleSearchChange} >
+            <option value="">👇</option>
+            <option value="toDoNumber" >To Do Id</option>
+            <option value="title">Title</option>
+            <option value="completed">Completed</option>
+            <option value="unCompleted">Un Completed</option>
+          </select>
+        </label>
+        <img className="clear" src={reset} onClick={() => setSearcTodos(todos)}></img>
+        <button className="todoAddButton"
           onClick={() => {
             const newToDo = prompt("Enter new To Do:");
             if (newToDo !== null) {
@@ -170,18 +170,31 @@ function Todos() {
         >
           Add To Do
         </button>
-        </div>
+      </div>
 
       <div className="todosDiv">
-      {searcTodos.map((todo,index) => (
-        <Todo
-          key={todo.id}
-          todo={todo}
-          index={index+1}
-          UpdateDataOfTodos={UpdateDataOfTodos}
-          handleDeleteTodo={handleDeleteTodo}
-        />
-      ))}
+        {searcTodos.length !== 0 ? (
+          <>
+            {searcTodos.map((todo, index) => (
+              <Todo
+                key={todo.id}
+                todo={todo}
+                index={index + 1}
+                UpdateDataOfTodos={UpdateDataOfTodos}
+                handleDeleteTodo={handleDeleteTodo}
+              />
+
+            ))}
+          </>
+        ) : (
+          <div className="noTodos">
+            <br />
+            <h1>NO Todos Yet...</h1>
+            <br />
+            <h3>to add more click above👆</h3>
+          </div>
+        )
+        }
       </div>
     </>
   );

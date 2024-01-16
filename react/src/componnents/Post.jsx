@@ -21,7 +21,7 @@ function Post({ index, post, handleDeletePost, UpdateDataOfPost }) {
             <span className="post">id: {post.id}</span>
             <br />
             <label className="post"> {post.title}</label>
-            <button onClick={()=>setIsPost(true)}>Show More</button>
+            <button className='showMore' onClick={()=>setIsPost(true)}>Show More</button>
             <br />
             {isPost &&
                 <Modal
