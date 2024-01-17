@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import del from "../pictures/delete-photo.png";
 import { Link, useNavigate } from 'react-router-dom';
-
 import update from "../pictures/update.png";
 import './componnents.css';
 import Modal from 'react-modal';

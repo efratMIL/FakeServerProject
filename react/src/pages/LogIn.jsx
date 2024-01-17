@@ -1,4 +1,4 @@
-import React, { useState, useContext ,useEffect} from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './pages.css';
 import { serverRequests } from '../Api';
@@ -9,6 +9,7 @@ function LogIn({ setUserData, setShowHeaders }) {
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
+
   function checkEndOfRegistration(user) {
     if (
       !user.name ||
@@ -42,14 +43,14 @@ function LogIn({ setUserData, setShowHeaders }) {
         } else {
           if (foundUser[0].website === password) {
             setUserData(foundUser[0])
-            const { website, ...userDataWithoutWebsite } =foundUser[0];
+            const { website, ...userDataWithoutWebsite } = foundUser[0];
             localStorage.setItem('thisUser', JSON.stringify(userDataWithoutWebsite))
-             if (checkEndOfRegistration(foundUser[0])) {
+            if (checkEndOfRegistration(foundUser[0])) {
               alert(`${foundUser[0].username} we're glad you're back`);
               setShowHeaders(true)
               navigate('/home')
             }
-            else{
+            else {
               const userDecision = confirm(
                 'Please fill in all fields before login.'
               );
@@ -59,7 +60,7 @@ function LogIn({ setUserData, setShowHeaders }) {
                 return;
               }
             }
-         } 
+          }
           else {
             alert('Your password is incorrect');
             setPassword("");

@@ -7,7 +7,6 @@ function Photos({ albumId }) {
     const [photos, setPhotos] = useState([]);
     const [arrayOfObjectOf6Photos, setArrayOfObjectOf6Photos] = useState([]);
     const [currentDiv, setCurrentDiv] = useState(1);
-    const [loading, setLoading] = useState(true);
 
 
     useEffect(() => {
@@ -15,14 +14,11 @@ function Photos({ albumId }) {
             try {
                 const response = await serverRequests('GET', `photos?albumId=${albumId}`, null);
                 setPhotos(response);
-                setLoading(false);
             } catch (error) {
                 console.error('Error fetching photos:', error);
-                setLoading(false);
 
             }
         };
-        setLoading(true);
         fetchPhotos();
     }, [albumId]);
 
@@ -49,6 +45,7 @@ function Photos({ albumId }) {
 
         setArrayOfObjectOf6Photos(newArray);
     }
+
     const handleAddPhoto = (newTitle, newUrl) => {
         const newPhoto = { albumId: albumId, title: newTitle, thumbnailUrl: newUrl }
         serverRequests('POST', 'photos', newPhoto).then((newPhoto) => {
@@ -62,6 +59,7 @@ function Photos({ albumId }) {
             setPhotos((prevPhotos) => prevPhotos.filter((photo) => photo.id !== deletedPhoto.id));
         })
     }
+
     const UpdateDataOfPhoto = (updatePhoto) => {
         serverRequests('PUT', `photos/${updatePhoto.id}`, updatePhoto)
             .then((foundPhoto) => {
@@ -77,6 +75,7 @@ function Photos({ albumId }) {
                 console.error('Error updating photos:', error);
             });
     };
+
     return (
         <div>
             <div className="modalHeader">
@@ -95,14 +94,13 @@ function Photos({ albumId }) {
                 </button>
             </div>
 
-            {arrayOfObjectOf6Photos.length!=0 ? (
+            {arrayOfObjectOf6Photos.length != 0 ? (
 
                 <div >
                     {arrayOfObjectOf6Photos.map((photosObject, index) => (
 
                         currentDiv === index + 1 && <div className="currentPhotos" key={index + 1}>
                             {Object.keys(photosObject).map((key) => (
-
                                 <div className='photoDiv' key={key}>
                                     <div className="titleInDiv" >
                                         <label >{photosObject[key].title}</label>
@@ -129,9 +127,9 @@ function Photos({ albumId }) {
                 </div>
             ) : (
                 <>
-                <br/>
-                <h1>NO Photos Yet...</h1>
-                <h3>to add more click above👆</h3>
+                    <br />
+                    <h1>NO Photos Yet...</h1>
+                    <h3>to add more click above👆</h3>
                 </>
             )}
             <div className="divsOfNumbers">

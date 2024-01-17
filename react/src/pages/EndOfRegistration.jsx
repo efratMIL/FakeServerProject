@@ -9,7 +9,7 @@ function EndOfRegistration({ setUserData, setShowHeaders }) {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    id:userData.id,
+    id: userData.id,
     name: "",
     username: userData.username,
     email: "",
@@ -35,16 +35,15 @@ function EndOfRegistration({ setUserData, setShowHeaders }) {
   function endSign(e) {
     e.preventDefault();
 
-      if (
-        !formData.name ||
-        !formData.email ||
-        !formData.phone 
-      
-      ) {
-        alert('Please fill in all the * fields before submitting.');
-        return;
-      }
-      console.log(formData)
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.phone
+
+    ) {
+      alert('Please fill in all the * fields before submitting.');
+      return;
+    }
     serverRequests('PUT', `users/${userData.id}`, formData)
       .then((savedUser) => {
         setUserData(savedUser)
@@ -54,10 +53,10 @@ function EndOfRegistration({ setUserData, setShowHeaders }) {
 
       });
     navigate('/home');
- }
+  }
 
   function handleChange(event) {
-    setFormData({...formData,id:userData.id,username:userData.username,website:userData.website})
+    setFormData({ ...formData, id: userData.id, username: userData.username, website: userData.website })
     const { name, value } = event.target;
     setFormData(prevFormData => {
       const properties = name.split('.');

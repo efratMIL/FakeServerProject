@@ -26,7 +26,7 @@ function SignIn({ setUserData }) {
       return;
     }
 
-    if ( password.length < 8) {
+    if (password.length < 8) {
       alert('The password you chose is not strong enough');
       return;
     }
@@ -61,53 +61,53 @@ function SignIn({ setUserData }) {
               setUserData(savedUser)
               console.log(savedUser)
             })
-        navigate('/end-of-registration');
-          }
+          navigate('/end-of-registration');
+        }
       })
   }
 
 
 
 
-return (
-  <>
-    <form className="sign_in" >
-      <br />
-      <input
-        className="username inputs"
-        type="text"
-        placeholder="User name"
-        required
-        value={userName}
-        onChange={(e) => setUserName(e.target.value)}
-      />
-      <br />
-      <br />
-      <input
-        className="username inputs"
-        type="password"
-        placeholder="password"
-        required
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <br />
-      <br />
-      <input
-        className="username inputs"
-        type="password"
-        placeholder="password validation"
-        required
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-      />
-      <br />
+  return (
+    <>
+      <form className="sign_in" >
+        <br />
+        <input
+          className="username inputs"
+          type="text"
+          placeholder="User name"
+          required
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+        />
+        <br />
+        <br />
+        <input
+          className="username inputs"
+          type="password"
+          placeholder="password"
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <br />
+        <br />
+        <input
+          className="username inputs"
+          type="password"
+          placeholder="password validation"
+          required
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
+        <br />
 
-      <input className="btns" type="submit" onClick={signIn} value="Add others details" />
-      <br />
-    </form>
-  </>
-);
+        <input className="btns" type="submit" onClick={signIn} value="Add others details" />
+        <br />
+      </form>
+    </>
+  );
 }
 
 export default SignIn;

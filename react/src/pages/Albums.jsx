@@ -61,7 +61,6 @@ function Albums() {
     }
   };
 
-  
 
   const handleAddAlbum = (newTitle) => {
     const newAlbum = { userId: userData.id, title: newTitle }
@@ -89,6 +88,7 @@ function Albums() {
             <option value="title">Title</option>
           </select>
         </label>
+        
         <img className="clear" src={reset} onClick={() => setSearcAlbums(albums)}></img>
         <button
           className="albumAddButton"

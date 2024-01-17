@@ -138,6 +138,7 @@ function Todos() {
         break;
     }
   };
+
   return (
     <>
       <br />
@@ -163,7 +164,9 @@ function Todos() {
             <option value="unCompleted">Un Completed</option>
           </select>
         </label>
+
         <img className="clear" src={reset} onClick={() => setSearcTodos(todos)}></img>
+
         <button className="todoAddButton"
           onClick={() => {
             const newToDo = prompt("Enter new To Do:");
@@ -177,6 +180,7 @@ function Todos() {
       </div>
 
       <div className="todosDiv">
+
         {searcTodos.length !== 0 ? (
           <>
             {searcTodos.map((todo, index) => (

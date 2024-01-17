@@ -15,7 +15,7 @@ function Album({ index, album }) {
         navigate('.')
     }
 
-    
+
     return (
         <div className="albumDiv">
             <span className="albumIndex album">{index}</span>

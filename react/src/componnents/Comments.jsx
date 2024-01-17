@@ -36,10 +36,10 @@ function Comments({ postId }) {
     }
 
     function handleDeleteComments(deletedComment) {
-            serverRequests('DELETE', `comments/${deletedComment.id}`, deletedComment).then(() => {
-                setComments((prevComments) => prevComments.filter((comment) => comment.id !== deletedComment.id));
-            })
-       
+        serverRequests('DELETE', `comments/${deletedComment.id}`, deletedComment).then(() => {
+            setComments((prevComments) => prevComments.filter((comment) => comment.id !== deletedComment.id));
+        })
+
     }
 
     function UpdateDataOfcomment(updateComment) {
@@ -95,11 +95,11 @@ function Comments({ postId }) {
                                 <label className="task">body: {comment.body}</label>
 
                                 <br />
-                                {userData.email === comment.email?(
+                                {userData.email === comment.email ? (
                                     <div className="updateAndDelete">
-                                    <img className='deleteImage' src={del} onClick={() => handleDeleteComments({ ...comment })}></img>
-                                    <img className='updateImage' src={update} onClick={() => {
-                                        
+                                        <img className='deleteImage' src={del} onClick={() => handleDeleteComments({ ...comment })}></img>
+                                        <img className='updateImage' src={update} onClick={() => {
+
                                             const newName = prompt("Enter new name:", comment.name);
                                             if (newName !== null) {
                                                 const newBody = prompt("Enter new body:", comment.body);
@@ -108,13 +108,13 @@ function Comments({ postId }) {
                                                 }
                                             }
                                         }
-                                       
-                                    }
-                                    ></img>
-                                </div>):
-                                (
-                                    <></>
-                                )
+
+                                        }
+                                        ></img>
+                                    </div>) :
+                                    (
+                                        <></>
+                                    )
                                 }
 
                             </div>

@@ -5,12 +5,13 @@ import update from "../pictures/update.png";
 import './componnents.css'
 
 function Todo({ index, todo, UpdateDataOfTodos, handleDeleteTodo }) {
+  
   return (
     <div className="todoDiv">
       <span className="todoIndex task">{index}</span>
-      <br/>
+      <br />
       <span className="task">id: {todo.id}</span>
-      <br/>
+      <br />
       <input
         type="checkbox"
         checked={todo.completed}
@@ -19,13 +20,13 @@ function Todo({ index, todo, UpdateDataOfTodos, handleDeleteTodo }) {
       <label className="task"> {todo.title}</label>
       <br />
       <div className="updateAndDelete">
-      <img className='deleteImage' src={del} onClick={() => handleDeleteTodo({ ...todo })}></img>
-      <img className='updateImage' src={update} onClick={() => {
-        const newTitle = prompt("Enter new title:", todo.title);
-        if (newTitle !== null) {
-          UpdateDataOfTodos({ ...todo, title: newTitle });
-        }
-      }}></img>
+        <img className='deleteImage' src={del} onClick={() => handleDeleteTodo({ ...todo })}></img>
+        <img className='updateImage' src={update} onClick={() => {
+          const newTitle = prompt("Enter new title:", todo.title);
+          if (newTitle !== null) {
+            UpdateDataOfTodos({ ...todo, title: newTitle });
+          }
+        }}></img>
       </div>
     </div>
   );

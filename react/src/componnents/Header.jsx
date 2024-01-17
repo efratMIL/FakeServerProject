@@ -4,16 +4,17 @@ import "./componnents.css"
 import { showHeadersContext } from "../App";
 import logo2 from "../pictures/logo2.png";
 import logOut from "../pictures/logOut.png";
-
 import { userContext } from "../App";
+
 export default function Header({ setShowHeaders }) {
     const showHeaders = useContext(showHeadersContext);
     const userData = useContext(userContext);
-    console.log(userData)
+
     function handleLogOut() {
         localStorage.setItem('thisUser', null);
         setShowHeaders(false);
     }
+
     return (
         <header>
             {!showHeaders ? (
@@ -80,12 +81,7 @@ export default function Header({ setShowHeaders }) {
                         >
                             Log Out<img className="logOutImage" src={logOut}></img>
                         </NavLink>
-                        {/* <NavLink
-                            to={`users/${userData.id}/info`}
-                            className={({ isActive }) => (isActive ? 'activeStyles' : 'unActiveStyle')}
-                        >
-                            Info
-                        </NavLink> */}
+                    
                     </>
                 )}
         </header>

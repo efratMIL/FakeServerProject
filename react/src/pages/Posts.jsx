@@ -119,10 +119,12 @@ function Posts() {
             <option value="title">Title</option>
           </select>
         </label>
+
         <img className="clear" src={reset} onClick={() => { isMyPost ? setSearchPosts(myPosts) : setSearchPosts(allPosts) }}></img>
         <button className="allPostButton" onClick={() => { setSearchPosts(allPosts), setIsMyPost(false) ,setSelectedSearch('')}}>All Posts</button>
         <button className="myPostButton" onClick={() => { setSearchPosts(myPosts), setIsMyPost(true),setSelectedSearch('') }}>My Posts</button>
         <button
+        
           className="postAddButton"
           onClick={() => {
             const newTitlePost = prompt("Enter a title for the new post:");
